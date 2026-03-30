@@ -1,145 +1,217 @@
-<body>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-/* LAYOUT BASE */
+<title>Sala Híbrida PPGPsi</title>
+
+<style>
+
+/* RESET */
+* { box-sizing: border-box; }
+
+body {
+    margin:0;
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI";
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+}
+
+/* LAYOUT */
 .layout {
-    display: flex;
-    min-height: 100vh;
+    display:flex;
+    min-height:100vh;
 }
 
-/* LADO ESQUERDO (APP) */
+/* MAIN */
 .main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    flex:1;
+    display:flex;
+    flex-direction:column;
 }
 
-/* LADO DIREITO (PAINEL) */
-.side-panel {
-    width: 420px;
-    background: linear-gradient(180deg, #1c2b36, #0f2027);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.4);
+/* HEADER */
+.header {
+    padding:20px;
+    font-weight:bold;
+    opacity:0.8;
 }
 
-/* IMAGEM */
-.image-wrapper {
-    display: flex;
-    align-items: flex-end;
-    height: 100%;
-}
-
-.image-wrapper img {
-    max-width: 100%;
-    max-height: 85vh;
-    object-fit: contain;
-
-    animation: fadeUp 1s ease;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
-}
-
-/* TEXTO HOMENAGEM */
-.tribute {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.tribute h3 {
-    margin: 0;
-    font-size: 1.1em;
-}
-
-.tribute p {
-    font-size: 0.85em;
-    opacity: 0.7;
-}
-
-/* CONTEÚDO */
+/* CONTENT */
 .content {
-    max-width: 700px;
-    margin: auto;
-    padding: 30px;
+    max-width:700px;
+    margin:auto;
+    padding:30px;
+}
+
+/* TITLE */
+.section {
+    opacity:0.6;
 }
 
 .title {
-    font-size: 1.8em;
-    font-weight: bold;
+    font-size:2em;
+    font-weight:700;
 }
 
+/* CARD */
 .details-card {
-    margin-top: 20px;
-    padding: 25px;
-    border-radius: 20px;
-    background: rgba(255,255,255,0.08);
+    margin-top:20px;
+    padding:25px;
+    border-radius:25px;
+    background:rgba(255,255,255,0.08);
     backdrop-filter: blur(20px);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    box-shadow:0 10px 40px rgba(0,0,0,0.4);
+    animation:fadeUp 0.5s ease;
+    line-height:1.6em;
+}
+
+/* ALERT */
+.alert {
+    margin-top:15px;
+    padding:10px;
+    border-radius:10px;
+    background:rgba(255,80,80,0.2);
+}
+
+/* NAV */
+.nav {
+    display:flex;
+    justify-content:space-between;
+    padding:20px;
+}
+
+button {
+    padding:14px 20px;
+    border:none;
+    border-radius:14px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.primary {
+    background:#00c6ff;
+    color:black;
+}
+
+.secondary {
+    background:#444;
+    color:white;
+}
+
+/* CHECK */
+.check {
+    margin-top:20px;
+}
+
+/* PROGRESS */
+.progress-bar {
+    height:6px;
+    background:rgba(255,255,255,0.2);
+}
+
+.progress-fill {
+    height:100%;
+    width:0%;
+    background:#00c6ff;
+    transition:0.4s;
+}
+
+/* SIDE PANEL */
+.side-panel {
+    width:420px;
+    background: linear-gradient(180deg,#1c2b36,#0f2027);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+    box-shadow:-10px 0 30px rgba(0,0,0,0.5);
+}
+
+.image-wrapper img {
+    max-width:100%;
+    max-height:80vh;
+    object-fit:contain;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+    animation:fadeUp 1s ease;
+}
+
+.tribute {
+    text-align:center;
+}
+
+.tribute h3 {
+    margin:0;
+}
+
+.tribute p {
+    opacity:0.7;
 }
 
 /* RESPONSIVO */
-@media (max-width: 1000px) {
-    .side-panel {
-        display: none;
-    }
+@media (max-width:1000px){
+    .side-panel { display:none; }
 }
 
 /* ANIMAÇÃO */
 @keyframes fadeUp {
-    from {opacity:0; transform:translateY(30px);}
+    from {opacity:0; transform:translateY(20px);}
     to {opacity:1; transform:translateY(0);}
 }
+
+</style>
+</head>
+
+<body>
+
 <div class="layout">
 
-    <!-- CONTEÚDO -->
-    <div class="main">
+<div class="main">
 
-        <div class="progress-bar">
-            <div class="progress-fill" id="progress"></div>
-        </div>
+<div class="progress-bar">
+<div class="progress-fill" id="progress"></div>
+</div>
 
-        <div class="header">
-            Sala Híbrida PPGPsi
-            <br>
-            <small>Guia de uso da defesa</small>
-        </div>
+<div class="header">
+Sala Híbrida PPGPsi<br>
+<small>Guia oficial da defesa híbrida</small>
+</div>
 
-        <div class="content">
+<div class="content">
 
-            <div class="section" id="section"></div>
-            <div class="title" id="title"></div>
+<div class="section" id="section"></div>
+<div class="title" id="title"></div>
+<div class="alert" id="alert"></div>
+<div class="details-card" id="details"></div>
 
-            <div class="alert" id="alert"></div>
+<div class="check">
+<input type="checkbox" id="done" onchange="enableNext()">
+<label>Confirmo que realizei este passo</label>
+</div>
 
-            <div class="details-card" id="details"></div>
+</div>
 
-            <div class="check">
-                <input type="checkbox" id="done" onchange="enableNext()">
-                <label>Confirmo que realizei este passo</label>
-            </div>
+<div class="nav">
+<button class="secondary" onclick="prev()">⬅ Anterior</button>
+<div id="counter"></div>
+<button class="primary" id="nextBtn" onclick="next()" disabled>Próximo ➡</button>
+</div>
 
-        </div>
+</div>
 
-        <div class="nav">
-            <button class="secondary" onclick="prev()">⬅ Anterior</button>
-            <div id="counter"></div>
-            <button class="primary" id="nextBtn" onclick="next()" disabled>Próximo ➡</button>
-        </div>
+<!-- PAINEL -->
+<div class="side-panel">
+<div class="image-wrapper">
+<img src="https://i.ibb.co/93shZYH3/image.png">
+</div>
 
-    </div>
-
-    <!-- PAINEL HOMENAGEM -->
-    <div class="side-panel">
-        <div class="image-wrapper">
-            <img src="https://i.ibb.co/93shZYH3/image.png" alt="Profª Ana Lucia Rossito Aiello">
-        </div>
-
-        <div class="tribute">
-            <h3>Profª Drª Ana Lucia Rossito Aiello</h3>
-            <p>Docente do Departamento de Psicologia<br>Universidade Federal de São Carlos</p>
-        </div>
-    </div>
+<div class="tribute">
+<h3>Profª Drª Ana Lucia Rossito Aiello</h3>
+<p>Departamento de Psicologia<br>UFSCar</p>
+</div>
+</div>
 
 </div>
 
@@ -276,39 +348,30 @@ const steps = [
 "✔ Proteção da lente"]
 
 ];
-    
+
 function render(){
+let s = steps[i];
 
-    let s = steps[i];
+document.getElementById("section").innerText = s[0];
+document.getElementById("title").innerText = s[1];
+document.getElementById("alert").innerText = s[2];
+document.getElementById("details").innerHTML = s[3].replace(/\n/g,"<br>");
 
-    document.getElementById("section").innerText = s[0];
-    document.getElementById("title").innerText = s[1];
-    document.getElementById("alert").innerText = s[2];
+document.getElementById("counter").innerText = (i+1)+" / "+steps.length;
 
-    document.getElementById("details").innerHTML =
-        s[3].replace(/\n/g,"<br>");
+document.getElementById("progress").style.width =
+((i+1)/steps.length*100)+"%";
 
-    document.getElementById("counter").innerText =
-        (i+1)+" / "+steps.length;
-
-    document.getElementById("progress").style.width =
-        ((i+1)/steps.length*100)+"%";
-
-    document.getElementById("done").checked = false;
-    document.getElementById("nextBtn").disabled = true;
+document.getElementById("done").checked = false;
+document.getElementById("nextBtn").disabled = true;
 }
 
-function next(){
-    if(i < steps.length-1){ i++; render(); }
-}
-
-function prev(){
-    if(i > 0){ i--; render(); }
-}
+function next(){ if(i < steps.length-1){ i++; render(); } }
+function prev(){ if(i > 0){ i--; render(); } }
 
 function enableNext(){
-    document.getElementById("nextBtn").disabled =
-    !document.getElementById("done").checked;
+document.getElementById("nextBtn").disabled =
+!document.getElementById("done").checked;
 }
 
 render();
