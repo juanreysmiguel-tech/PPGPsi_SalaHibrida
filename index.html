@@ -8,6 +8,39 @@
 
 <style>
 
+/* BACKGROUND FULLSCREEN */
+body {
+    margin:0;
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI";
+    
+    background: url('https://i.ibb.co/j9pWwQCp/image.png') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+
+    color:white;
+}
+
+/* OVERLAY PARA LEGIBILIDADE */
+body::after {
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    
+    background: rgba(10,20,30,0.55); /* ajuste fino */
+    
+    z-index:0;
+}
+
+/* GARANTIR QUE UI FIQUE NA FRENTE */
+.layout,
+.main,
+.content {
+    position:relative;
+    z-index:1;
+}
 /* RESET */
 * { box-sizing: border-box; }
 
@@ -60,9 +93,14 @@ body {
     margin-top:20px;
     padding:25px;
     border-radius:25px;
-    background:rgba(255,255,255,0.08);
-    backdrop-filter: blur(20px);
-    box-shadow:0 10px 40px rgba(0,0,0,0.4);
+
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.5),
+        inset 0 0 10px rgba(255,255,255,0.1);
+
     animation:fadeUp 0.5s ease;
     line-height:1.6em;
 }
@@ -118,17 +156,6 @@ button {
     transition:0.4s;
 }
 
-/* SIDE PANEL */
-.side-panel {
-    width:420px;
-    background: linear-gradient(180deg,#1c2b36,#0f2027);
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px;
-    box-shadow:-10px 0 30px rgba(0,0,0,0.5);
-}
 
 .image-wrapper img {
     max-width:100%;
@@ -175,7 +202,7 @@ button {
 </div>
 
 <div class="header">
-Sala Híbrida PPGPsi<br>
+Sala "Profª Drª Ana Lucia Rossito Aiello"<br>
 <small>Guia oficial da defesa híbrida</small>
 </div>
 
