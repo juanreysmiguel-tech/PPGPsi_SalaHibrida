@@ -146,90 +146,109 @@ let i = 0;
 
 const steps = [
 
+/* ================= INTRODUÇÃO ================= */
+
+["Introdução","Entenda como funcionará a defesa híbrida","",
+"Esta sala conecta participantes presenciais e remotos usando o Google Meet.\n\n👉 O computador transmite a reunião\n👉 A câmera Cougar Cyclops capta imagem e som da sala\n👉 A TV mostra a apresentação para quem está presente\n👉 O Meet transmite para quem está remoto\n\n💡 Você seguirá este guia passo a passo.\nAvance apenas quando tiver concluído cada etapa."],
+
+/* ================= BOAS PRÁTICAS ================= */
+
+["Boas Práticas","Evite eco e problemas de áudio","⚠️ Isso é essencial",
+"1. NÃO utilize celulares ou notebooks com microfone aberto na sala\n\n2. Se alguém entrar no Meet pelo celular:\n→ manter microfone DESLIGADO\n\n3. Use apenas a Cougar Cyclops como áudio\n\n✔ Isso evita eco (microfonia)\n\n❌ Eco acontece quando dois microfones captam o mesmo som"],
+
+["Boas Práticas","Organize o ambiente da sala","",
+"1. Posicione todos voltados para a câmera\n\n2. Evite ruídos (conversas paralelas)\n\n3. Verifique iluminação\n\n✔ Isso melhora áudio e imagem para a banca"],
+
 /* ================= PREPARAÇÃO ================= */
 
-["Preparação","Ligue o computador","",
-"1. Pressione o botão de ligar do computador\n\n2. Aguarde a tela de login aparecer\n\n3. Digite seu usuário institucional (UFSCar)\n\n4. Digite sua senha do Sagui\n\n✔ Se entrou → OK\n❌ Se não entrou → verifique usuário/senha ou CAPS LOCK"],
+["Preparação","Ligue o computador da sala","",
+"1. Pressione o botão de ligar\n\n2. Aguarde a tela de login\n\n3. Usuário: Defesa\n\n4. Senha: PPGPsiCAPES7\n\n✔ Se entrou → pronto para uso\n❌ Se não → revise a digitação"],
 
 ["Preparação","Ligue a TV","",
-"1. Pegue o controle remoto da TV\n\n2. Pressione o botão de ligar\n\n3. Verifique se a tela acendeu\n\n✔ Se a TV está ligada → OK\n❌ Se não → verifique energia ou controle"],
+"1. Pegue o controle remoto\n\n2. Pressione o botão de ligar\n\n✔ Tela acesa → OK"],
 
-["Preparação","Coloque a TV na entrada HDMI correta","",
-"1. No controle da TV, pressione o botão 'Input' ou 'Source'\n\n2. Selecione a entrada HDMI conectada ao computador\n\n3. Aguarde aparecer a imagem do computador\n\n✔ Se aparece o desktop → OK\n❌ Se tela preta → tente outro HDMI"],
+["Preparação","Selecione a entrada HDMI correta","",
+"1. No controle, pressione 'Input' ou 'Source'\n\n2. Escolha HDMI conectado ao computador\n\n✔ Se aparece o desktop → correto\n❌ Se tela preta → teste outro HDMI"],
 
-["Preparação","Ative o modo 'Estender tela'","",
-"1. No teclado, pressione: Windows + P\n\n2. Vai abrir um menu lateral\n\n3. Clique em 'Estender'\n\n✔ Agora você terá duas telas\n❌ Se não → repita o comando"],
+["Preparação","Ative o modo Estender (duas telas)","",
+"1. Pressione Windows + P\n\n2. Clique em 'Estender'\n\n✔ Agora há duas telas:\n→ Monitor (controle)\n→ TV (apresentação)\n\n💡 Isso evita mostrar coisas erradas na TV"],
 
-["Preparação","Conecte a câmera Cougar Cyclops","",
-"1. Localize o cabo USB-C da Cyclops\n\n2. Conecte diretamente no computador\n\n3. Aguarde alguns segundos\n\n✔ Se conectou → OK\n❌ Se não reconhecer → reconecte"],
+["Preparação","Verifique a Cougar Cyclops (equipamento principal)","",
+"1. Localize a Cyclops na mesa\n\n2. Confirme que o cabo USB-C está conectado\n\n3. Entenda o que ela faz:\n→ câmera (imagem da sala)\n→ microfone (capta áudio)\n→ alto-falante (som da banca)\n\n✔ É o único dispositivo necessário\n❌ Se não funcionar → reconectar cabo"],
 
 ["Preparação","Remova a tampa da câmera","",
-"1. Vá até o topo da câmera Cyclops\n\n2. Retire a tampa de proteção\n\n✔ Se imagem aparece → OK\n❌ Se tela preta → tampa ainda está fechada"],
+"1. Retire a tampa da lente (no topo)\n\n✔ Se imagem aparece → OK\n❌ Se tela preta → tampa ainda está fechada"],
 
 /* ================= GOOGLE MEET ================= */
 
-["Google Meet","Acesse seu e-mail institucional","",
-"1. Abra o navegador (Chrome)\n\n2. Entre em gmail.com\n\n3. Faça login com @ufscar.br\n\n✔ Se entrou → OK\n❌ Se não → verifique login"],
+["Google Meet","Acesse o e-mail institucional","",
+"1. Abra o navegador (Chrome)\n\n2. Vá em gmail.com\n\n3. Faça login com @ufscar.br\n\n✔ Necessário para gravação"],
 
-["Google Meet","Abra o link do Google Meet","",
-"1. Localize o link da defesa\n\n2. Clique nele\n\n3. Aguarde carregar a sala\n\n✔ Se apareceu a tela da reunião → OK"],
+["Google Meet","Abra o link da reunião","",
+"1. Clique no link do Meet da defesa\n\n✔ Sala carregada\n\n💡 Ainda NÃO entre — primeiro configure"],
 
 ["Google Meet","Abra as configurações do Meet","",
-"1. Na tela do Meet, procure três pontinhos (⋮)\n\n2. Clique neles\n\n3. Clique em 'Configurações'\n\n✔ A janela abriu → OK"],
+"1. Clique nos três pontinhos (⋮)\n\n2. Clique em 'Configurações'\n\n✔ Janela de configuração aberta"],
 
 ["Google Meet","Selecione a câmera COUGAR Cyclops","",
-"1. Clique na aba 'Vídeo'\n\n2. Em 'Câmera', clique na lista\n\n3. Escolha: COUGAR Cyclops\n\n4. Observe a imagem\n\n✔ Se você aparece → OK\n❌ Se preto → remover tampa"],
+"1. Clique na aba 'Vídeo'\n\n2. Em 'Câmera', selecione:\n→ COUGAR Cyclops\n\n3. Observe a imagem\n\n✔ Se você aparece → correto\n❌ Se preto → verificar tampa\n\n💡 A Cyclops mostra toda a sala"],
 
-["Google Meet","Configure o áudio (microfone e som)","",
-"1. Clique na aba 'Áudio'\n\n2. Em Microfone → COUGAR Cyclops\n\n3. Em Alto-falante → COUGAR Cyclops\n\n4. Fale algo para testar\n\n✔ Barra de áudio mexe → OK\n❌ Se não → verifique cabo"],
+["Google Meet","Configure o áudio corretamente","",
+"1. Clique na aba 'Áudio'\n\n2. Microfone → COUGAR Cyclops\n\n3. Alto-falante → COUGAR Cyclops\n\n4. Fale algo\n\n✔ Barra de áudio mexe → OK\n❌ Se não → verifique cabo USB\n\n💡 Nunca use outro microfone"],
 
-["Google Meet","Inicie a gravação","⚠️ Avise todos que será gravado",
-"1. Clique em 'Atividades'\n\n2. Clique em 'Gravação'\n\n3. Clique em 'Iniciar gravação'\n\n✔ Aparece aviso de gravação\n❌ Se não → verifique permissões"],
+["Google Meet","Ajuste o modo da câmera (Cyclops)","",
+"1. Use os botões físicos na base da câmera\n\n2. Escolha:\n→ Modo debate (pessoas divididas)\n→ Modo panorâmico (visão geral)\n\n✔ Escolha conforme a banca"],
+
+["Google Meet","Entre na reunião","",
+"1. Clique em 'Participar agora'\n\n✔ Você entrou no Meet"],
+
+["Google Meet","Inicie a gravação","⚠️ Obrigatório avisar todos",
+"1. Clique em 'Atividades'\n\n2. Clique em 'Gravação'\n\n3. Clique em iniciar\n\n✔ Gravação ativa\n\n💡 Essa gravação é obrigatória"],
 
 /* ================= APRESENTAÇÃO ================= */
 
-["Apresentação","Coloque os slides na TV","",
-"1. Abra seu PowerPoint ou PDF\n\n2. Arraste a janela para a TV\n\n✔ Se está na TV → OK"],
+["Apresentação","Organize a apresentação","",
+"1. Abra PowerPoint ou PDF\n\n2. Arraste para a TV\n\n✔ TV = público presencial"],
 
-["Apresentação","Compartilhe a apresentação no Meet","",
-"1. Clique em 'Apresentar agora'\n\n2. Escolha 'Uma janela' ou 'Uma tela'\n\n3. Selecione a apresentação\n\n✔ Se participantes veem → OK"],
+["Apresentação","Compartilhe no Meet","",
+"1. Clique em 'Apresentar agora'\n\n2. Escolha 'Uma janela' ou 'Uma tela'\n\n3. Selecione apresentação\n\n✔ Remotos veem o slide"],
 
-["Apresentação","Confirme visualização","",
-"1. Pergunte se todos estão vendo\n\n✔ Se sim → OK\n❌ Se não → revise compartilhamento"],
+["Apresentação","Confirme se todos veem","",
+"1. Pergunte para a banca\n\n✔ Se todos confirmam → OK\n❌ Se não → revisar compartilhamento"],
 
 ["Apresentação","Fique próximo da câmera","",
-"1. Posicione-se perto da Cyclops\n\n✔ Áudio e imagem melhores"],
+"✔ Melhor captação de áudio\n\n💡 A Cyclops capta a sala inteira"],
 
 /* ================= PROPGWEB ================= */
 
 ["ProPGWeb","Acesse o sistema","",
-"1. Abra o navegador\n\n2. Digite: propgweb.ufscar.br\n\n✔ Se abriu → OK"],
+"1. Abra navegador\n\n2. Digite: propgweb.ufscar.br\n\n✔ Sistema aberto"],
 
 ["ProPGWeb","Acesse a banca","",
-"1. Vá em Defesa\n\n2. Clique em 'Manutenção de Bancas'\n\n✔ Tela aberta"],
+"1. Clique em Defesa\n\n2. Clique em 'Manutenção de Bancas'\n\n✔ Lista carregada"],
 
-["ProPGWeb","Confira os dados da banca","⚠️ Erros impedem envio",
-"1. Verifique nomes\n\n2. Verifique e-mails\n\n✔ Se correto → OK"],
+["ProPGWeb","Confira os dados","⚠️ Etapa crítica",
+"1. Verifique nomes\n\n2. Verifique e-mails\n\n✔ Se correto → OK\n❌ Se errado → corrigir antes"],
 
-["ProPGWeb","Clique em Liberar Avaliação","",
-"1. Clique no botão 'Liberar Avaliação'\n\n✔ Links enviados automaticamente"],
+["ProPGWeb","Liberar avaliação","",
+"1. Clique em 'Liberar Avaliação'\n\n✔ Links enviados automaticamente\n\n💡 Sem isso, a banca não consegue avaliar"],
 
 /* ================= DEFESA ================= */
 
-["Defesa","Inicie a defesa","",
-"✔ Gravação ativa\n✔ Todos conectados"],
+["Defesa","Início da defesa","",
+"✔ Gravação ativa\n✔ Todos conectados\n✔ Apresentação funcionando"],
 
 ["Defesa","Momento de deliberação","",
-"1. Peça para o aluno sair\n\n✔ Ambiente reservado"],
+"1. Peça para o aluno sair\n\n✔ Apenas banca permanece\n\n💡 Momento sigiloso"],
 
-["Defesa","Interrompa a gravação","🚫 Nunca grave a deliberação",
-"1. Clique em parar gravação\n\n✔ Gravação pausada"],
+["Defesa","Interrompa a gravação","🚫 Proibido gravar",
+"1. Pare a gravação\n\n✔ Garantir sigilo da banca"],
 
-["Defesa","Banca envia parecer","",
-"1. Cada membro acessa o e-mail\n\n2. Preenche parecer\n\n✔ Status atualizado"],
+["Defesa","Envio dos pareceres","",
+"1. Cada membro acessa o e-mail\n\n2. Preenche parecer\n\n✔ Sistema registra automaticamente"],
 
 ["Defesa","Acompanhe no sistema","",
-"✔ Veja se todos concluíram"],
+"✔ Verifique se todos concluíram\n\n💡 Nomes ficam como 'concluído'"],
 
 /* ================= FINALIZAÇÃO ================= */
 
@@ -237,13 +256,13 @@ const steps = [
 "✔ Todos enviados"],
 
 ["Finalização","Finalize no sistema","",
-"✔ Processo encerrado"],
+"✔ Processo encerrado oficialmente"],
 
-["Finalização","Desligue equipamentos","",
-"1. Desligue computador\n\n2. Desligue TV"],
+["Finalização","Desligue os equipamentos","",
+"1. Desligue o computador\n\n2. Desligue a TV"],
 
-["Finalização","Coloque a tampa da câmera","",
-"✔ Proteção da lente"]
+["Finalização","Recoloque a tampa da câmera","",
+"✔ Protege a lente da Cyclops"]
 
 ];
     
