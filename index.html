@@ -7,242 +7,278 @@
 <title>Sala Híbrida PPGPsi</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    color: white;
-}
 
-.container {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
+body {
+    margin:0;
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI";
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
 }
 
 .card {
-    width: 100%;
-    max-width: 700px;
-    padding: 25px;
-    border-radius: 20px;
-    backdrop-filter: blur(15px);
-    background: rgba(255,255,255,0.08);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-    animation: fadeIn 0.4s ease;
+    margin:40px auto;
+    width:90%;
+    max-width:700px;
+    padding:30px;
+    border-radius:25px;
+    backdrop-filter:blur(20px);
+    background:rgba(255,255,255,0.08);
+    box-shadow:0 10px 40px rgba(0,0,0,0.4);
+    animation:fade 0.4s ease;
 }
 
-h1 {
-    font-size: 1.2em;
-    opacity: 0.8;
-}
-
-h2 {
-    margin-top: 5px;
-}
-
-.step-list {
-    margin-top: 15px;
-    line-height: 1.6em;
-}
-
-.step-list li {
-    margin-bottom: 10px;
-}
-
-.highlight {
-    background: rgba(0,198,255,0.15);
-    padding: 5px 8px;
-    border-radius: 8px;
-}
+.section { opacity:0.7; }
+.step { font-size:1.4em; margin:15px 0; }
 
 .alert {
-    background: rgba(255, 80, 80, 0.2);
-    padding: 10px;
-    border-radius: 10px;
-    margin-top: 10px;
+    background:rgba(255,80,80,0.2);
+    padding:10px;
+    border-radius:10px;
+}
+
+.progress-bar {
+    height:6px;
+    background:rgba(255,255,255,0.2);
+    border-radius:10px;
+    margin:20px 0;
+    overflow:hidden;
+}
+
+.progress-fill {
+    height:100%;
+    width:0%;
+    background:#00c6ff;
+    transition:0.4s;
 }
 
 button {
-    padding: 10px 15px;
-    border-radius: 10px;
-    border: none;
-    margin-top: 15px;
-    cursor: pointer;
-    font-weight: bold;
+    padding:12px 18px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:bold;
 }
 
-.next { background: #00c6ff; }
-.prev { background: #444; color: white; }
+.primary { background:#00c6ff; }
+.secondary { background:#555; color:white; }
 
-.details {
-    margin-top: 15px;
-    display: none;
-    font-size: 0.9em;
-    opacity: 0.9;
-    border-left: 3px solid #00c6ff;
-    padding-left: 10px;
+.nav {
+    display:flex;
+    justify-content:space-between;
+    padding:20px;
 }
 
-.progress {
-    height: 5px;
-    background: #00c6ff;
-    transition: 0.3s;
+.check { margin-top:15px; }
+
+/* MODAL */
+.modal {
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    justify-content:center;
+    align-items:center;
 }
 
-@keyframes fadeIn {
-    from {opacity:0; transform: translateY(20px);}
-    to {opacity:1; transform: translateY(0);}
+.modal-content {
+    width:90%;
+    max-width:600px;
+    padding:25px;
+    border-radius:20px;
+    background:#1c2b36;
+    animation:fade 0.3s ease;
 }
+
+.close {
+    float:right;
+    cursor:pointer;
+}
+
+@keyframes fade {
+    from {opacity:0; transform:translateY(20px);}
+    to {opacity:1; transform:translateY(0);}
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="progress" id="progress"></div>
-
-<div class="container">
 <div class="card">
 
-<h1>Sala Híbrida PPGPsi</h1>
-<h2 id="title"></h2>
-
-<ul class="step-list" id="content"></ul>
+<div class="section" id="section"></div>
+<div class="step" id="step"></div>
 
 <div class="alert" id="alert"></div>
 
-<button onclick="toggleDetails()">🔍 Ver detalhes</button>
-<div class="details" id="details"></div>
+<div class="progress-bar">
+<div class="progress-fill" id="progress"></div>
+</div>
 
-<br>
+<button onclick="openModal()">🔍 Ver detalhes</button>
 
-<button class="prev" onclick="prevStep()">⬅ Voltar</button>
-<button class="next" onclick="nextStep()">Próximo ➡</button>
+<div class="check">
+<input type="checkbox" id="done" onchange="enableNext()">
+<label>Confirmo que realizei este passo</label>
+</div>
 
+</div>
+
+<div class="nav">
+<button class="secondary" onclick="prev()">⬅</button>
+<div id="counter"></div>
+<button class="primary" id="nextBtn" onclick="next()" disabled>➡</button>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-content">
+<span class="close" onclick="closeModal()">✖</span>
+<h3>Detalhes do passo</h3>
+<p id="modalText"></p>
 </div>
 </div>
 
 <script>
 
-let step = 0;
+let i = 0;
 
 const steps = [
 
-{
-title: "💻 Preparação Inicial e Hardware",
-content: [
-"Ligue o computador com suas credenciais institucionais.",
-"Verifique se a TV está ligada na entrada HDMI correta.",
-"Pressione <span class='highlight'>Windows + P → Estender</span>.",
-"Confirme conexão do cabo USB-C da Cougar Cyclops.",
-"Remova a tampa de privacidade da câmera."
-],
-alert: "",
-details: "Essa etapa garante que o ambiente físico e digital esteja corretamente preparado. A extensão de tela é essencial para separar controle (monitor) e apresentação (TV)."
-},
+/* ================= PREPARAÇÃO ================= */
 
-{
-title: "🎥 Iniciando no Google Meet",
-content: [
-"Faça login no e-mail institucional (@ufscar.br).",
-"Acesse o link do Meet da defesa.",
-"Abra Configurações (3 pontos).",
-"Selecione <span class='highlight'>COUGAR Cyclops</span> como câmera.",
-"Selecione Cyclops como microfone e áudio.",
-"Inicie a gravação em Atividades → Gravação."
-],
-alert: "⚠️ Informe a todos que a sessão será gravada.",
-details: "A Cyclops é uma câmera 360°, então a configuração correta garante captação adequada de áudio e imagem para a banca remota."
-},
+["Preparação","Ligue o computador","",
+"1. Pressione o botão de ligar do computador\n\n2. Aguarde a tela de login aparecer\n\n3. Digite seu usuário institucional (UFSCar)\n\n4. Digite sua senha do Sagui\n\n✔ Se entrou → OK\n❌ Se não entrou → verifique usuário/senha ou CAPS LOCK"],
 
-{
-title: "📊 Apresentação (Aluno)",
-content: [
-"Arraste o PowerPoint/PDF para a TV.",
-"No Meet clique em Apresentar agora.",
-"Escolha 'Uma janela' ou 'Uma tela'.",
-"Verifique se o slide está visível para todos.",
-"Permaneça próximo da câmera."
-],
-alert: "",
-details: "A separação de telas evita confusão e permite controle total da apresentação sem interferir na visualização da banca."
-},
+["Preparação","Ligue a TV","",
+"1. Pegue o controle remoto da TV\n\n2. Pressione o botão de ligar\n\n3. Verifique se a tela acendeu\n\n✔ Se a TV está ligada → OK\n❌ Se não → verifique energia ou controle"],
 
-{
-title: "📋 ProPGWeb (Fluxo Oficial)",
-content: [
-"Acesse propgweb.ufscar.br.",
-"Vá em Defesa → Manutenção de Bancas.",
-"Confira dados dos membros.",
-"Clique em <span class='highlight'>Liberar Avaliação</span>."
-],
-alert: "⚠️ Se houver erro nos dados, o parecer não será enviado corretamente.",
-details: "A liberação envia automaticamente os links de avaliação para os membros da banca."
-},
+["Preparação","Coloque a TV na entrada HDMI correta","",
+"1. No controle da TV, pressione o botão 'Input' ou 'Source'\n\n2. Selecione a entrada HDMI conectada ao computador\n\n3. Aguarde aparecer a imagem do computador\n\n✔ Se aparece o desktop → OK\n❌ Se tela preta → tente outro HDMI"],
 
-{
-title: "⚖️ Dinâmica da Defesa",
-content: [
-"Inicie a defesa com gravação ativa.",
-"Durante a deliberação, peça saída do aluno.",
-"Interrompa a gravação.",
-"A banca envia parecer por e-mail.",
-"Oriente acompanha status no sistema."
-],
-alert: "🚫 A deliberação NÃO deve ser gravada.",
-details: "Esse é o momento mais crítico do fluxo. O sigilo é obrigatório e institucional."
-},
+["Preparação","Ative o modo 'Estender tela'","",
+"1. No teclado, pressione: Windows + P\n\n2. Vai abrir um menu lateral\n\n3. Clique em 'Estender'\n\n✔ Agora você terá duas telas\n❌ Se não → repita o comando"],
 
-{
-title: "✅ Finalização",
-content: [
-"Confirme envio de todos os pareceres.",
-"Finalize no ProPGWeb.",
-"Desligue computador e TV.",
-"Recoloque tampa da câmera."
-],
-alert: "",
-details: "Essa etapa garante o encerramento formal e preservação dos equipamentos."
-}
+["Preparação","Conecte a câmera Cougar Cyclops","",
+"1. Localize o cabo USB-C da Cyclops\n\n2. Conecte diretamente no computador\n\n3. Aguarde alguns segundos\n\n✔ Se conectou → OK\n❌ Se não reconhecer → reconecte"],
+
+["Preparação","Remova a tampa da câmera","",
+"1. Vá até o topo da câmera Cyclops\n\n2. Retire a tampa de proteção\n\n✔ Se imagem aparece → OK\n❌ Se tela preta → tampa ainda está fechada"],
+
+/* ================= GOOGLE MEET ================= */
+
+["Google Meet","Acesse seu e-mail institucional","",
+"1. Abra o navegador (Chrome)\n\n2. Entre em gmail.com\n\n3. Faça login com @ufscar.br\n\n✔ Se entrou → OK\n❌ Se não → verifique login"],
+
+["Google Meet","Abra o link do Google Meet","",
+"1. Localize o link da defesa\n\n2. Clique nele\n\n3. Aguarde carregar a sala\n\n✔ Se apareceu a tela da reunião → OK"],
+
+["Google Meet","Abra as configurações do Meet","",
+"1. Na tela do Meet, procure três pontinhos (⋮)\n\n2. Clique neles\n\n3. Clique em 'Configurações'\n\n✔ A janela abriu → OK"],
+
+["Google Meet","Selecione a câmera COUGAR Cyclops","",
+"1. Clique na aba 'Vídeo'\n\n2. Em 'Câmera', clique na lista\n\n3. Escolha: COUGAR Cyclops\n\n4. Observe a imagem\n\n✔ Se você aparece → OK\n❌ Se preto → remover tampa"],
+
+["Google Meet","Configure o áudio (microfone e som)","",
+"1. Clique na aba 'Áudio'\n\n2. Em Microfone → COUGAR Cyclops\n\n3. Em Alto-falante → COUGAR Cyclops\n\n4. Fale algo para testar\n\n✔ Barra de áudio mexe → OK\n❌ Se não → verifique cabo"],
+
+["Google Meet","Inicie a gravação","⚠️ Avise todos que será gravado",
+"1. Clique em 'Atividades'\n\n2. Clique em 'Gravação'\n\n3. Clique em 'Iniciar gravação'\n\n✔ Aparece aviso de gravação\n❌ Se não → verifique permissões"],
+
+/* ================= APRESENTAÇÃO ================= */
+
+["Apresentação","Coloque os slides na TV","",
+"1. Abra seu PowerPoint ou PDF\n\n2. Arraste a janela para a TV\n\n✔ Se está na TV → OK"],
+
+["Apresentação","Compartilhe a apresentação no Meet","",
+"1. Clique em 'Apresentar agora'\n\n2. Escolha 'Uma janela' ou 'Uma tela'\n\n3. Selecione a apresentação\n\n✔ Se participantes veem → OK"],
+
+["Apresentação","Confirme visualização","",
+"1. Pergunte se todos estão vendo\n\n✔ Se sim → OK\n❌ Se não → revise compartilhamento"],
+
+["Apresentação","Fique próximo da câmera","",
+"1. Posicione-se perto da Cyclops\n\n✔ Áudio e imagem melhores"],
+
+/* ================= PROPGWEB ================= */
+
+["ProPGWeb","Acesse o sistema","",
+"1. Abra o navegador\n\n2. Digite: propgweb.ufscar.br\n\n✔ Se abriu → OK"],
+
+["ProPGWeb","Acesse a banca","",
+"1. Vá em Defesa\n\n2. Clique em 'Manutenção de Bancas'\n\n✔ Tela aberta"],
+
+["ProPGWeb","Confira os dados da banca","⚠️ Erros impedem envio",
+"1. Verifique nomes\n\n2. Verifique e-mails\n\n✔ Se correto → OK"],
+
+["ProPGWeb","Clique em Liberar Avaliação","",
+"1. Clique no botão 'Liberar Avaliação'\n\n✔ Links enviados automaticamente"],
+
+/* ================= DEFESA ================= */
+
+["Defesa","Inicie a defesa","",
+"✔ Gravação ativa\n✔ Todos conectados"],
+
+["Defesa","Momento de deliberação","",
+"1. Peça para o aluno sair\n\n✔ Ambiente reservado"],
+
+["Defesa","Interrompa a gravação","🚫 Nunca grave a deliberação",
+"1. Clique em parar gravação\n\n✔ Gravação pausada"],
+
+["Defesa","Banca envia parecer","",
+"1. Cada membro acessa o e-mail\n\n2. Preenche parecer\n\n✔ Status atualizado"],
+
+["Defesa","Acompanhe no sistema","",
+"✔ Veja se todos concluíram"],
+
+/* ================= FINALIZAÇÃO ================= */
+
+["Finalização","Confirme envio dos pareceres","",
+"✔ Todos enviados"],
+
+["Finalização","Finalize no sistema","",
+"✔ Processo encerrado"],
+
+["Finalização","Desligue equipamentos","",
+"1. Desligue computador\n\n2. Desligue TV"],
+
+["Finalização","Coloque a tampa da câmera","",
+"✔ Proteção da lente"]
 
 ];
+    
+function render(){
+    let s = steps[i];
 
-function render() {
-    document.getElementById("title").innerText = steps[step].title;
+    document.getElementById("section").innerText = s[0];
+    document.getElementById("step").innerText = s[1];
+    document.getElementById("alert").innerText = s[2];
 
-    let list = document.getElementById("content");
-    list.innerHTML = "";
-
-    steps[step].content.forEach(item => {
-        let li = document.createElement("li");
-        li.innerHTML = "✔ " + item;
-        list.appendChild(li);
-    });
-
-    document.getElementById("alert").innerHTML = steps[step].alert;
-    document.getElementById("details").innerText = steps[step].details;
-    document.getElementById("details").style.display = "none";
+    document.getElementById("counter").innerText =
+        (i+1)+" / "+steps.length;
 
     document.getElementById("progress").style.width =
-        ((step+1)/steps.length*100) + "%";
+        ((i+1)/steps.length*100)+"%";
+
+    document.getElementById("done").checked = false;
+    document.getElementById("nextBtn").disabled = true;
 }
 
-function nextStep(){
-    if(step < steps.length-1){
-        step++;
-        render();
-    }
+function next(){ if(i<steps.length-1){ i++; render(); } }
+function prev(){ if(i>0){ i--; render(); } }
+
+function enableNext(){
+    document.getElementById("nextBtn").disabled =
+    !document.getElementById("done").checked;
 }
 
-function prevStep(){
-    if(step > 0){
-        step--;
-        render();
-    }
+function openModal(){
+    document.getElementById("modalText").innerText = steps[i][3];
+    document.getElementById("modal").style.display="flex";
 }
 
-function toggleDetails(){
-    let d = document.getElementById("details");
-    d.style.display = d.style.display === "block" ? "none" : "block";
+function closeModal(){
+    document.getElementById("modal").style.display="none";
 }
 
 render();
