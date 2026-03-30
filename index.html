@@ -8,40 +8,121 @@
 
 <style>
 
+* { box-sizing: border-box; }
+
 body {
     margin:0;
     font-family:-apple-system, BlinkMacSystemFont, "Segoe UI";
     background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
     color:white;
+    overflow-x:hidden;
 }
 
-.card {
-    margin:40px auto;
-    width:90%;
-    max-width:700px;
-    padding:30px;
+/* CONTAINER */
+.app {
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+}
+
+/* HEADER */
+.header {
+    padding:20px;
+    font-weight:bold;
+    opacity:0.8;
+}
+
+/* MAIN */
+.main {
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+/* CARD PRINCIPAL */
+.container {
+    width:100%;
+    max-width:750px;
+}
+
+/* TÍTULO */
+.title {
+    font-size:2em;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+/* SEÇÃO */
+.section {
+    opacity:0.6;
+    margin-bottom:10px;
+}
+
+/* CARD DETALHES WOW */
+.details-card {
+    margin-top:20px;
+    padding:25px;
     border-radius:25px;
-    backdrop-filter:blur(20px);
     background:rgba(255,255,255,0.08);
-    box-shadow:0 10px 40px rgba(0,0,0,0.4);
-    animation:fade 0.4s ease;
+    backdrop-filter: blur(20px);
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.4),
+        inset 0 0 10px rgba(255,255,255,0.05);
+    animation:fadeUp 0.5s ease;
+    line-height:1.6em;
 }
 
-.section { opacity:0.7; }
-.step { font-size:1.4em; margin:15px 0; }
-
+/* ALERTA */
 .alert {
+    margin-top:15px;
+    padding:12px;
+    border-radius:12px;
     background:rgba(255,80,80,0.2);
-    padding:10px;
-    border-radius:10px;
+    font-weight:bold;
 }
 
+/* CHECK */
+.check {
+    margin-top:20px;
+    font-size:1em;
+}
+
+/* NAV */
+.nav {
+    display:flex;
+    justify-content:space-between;
+    padding:20px;
+}
+
+button {
+    padding:14px 20px;
+    border:none;
+    border-radius:14px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.2s;
+}
+
+.primary {
+    background:#00c6ff;
+    color:black;
+}
+
+.primary:hover {
+    transform:scale(1.05);
+}
+
+.secondary {
+    background:#444;
+    color:white;
+}
+
+/* PROGRESS */
 .progress-bar {
     height:6px;
     background:rgba(255,255,255,0.2);
-    border-radius:10px;
-    margin:20px 0;
-    overflow:hidden;
 }
 
 .progress-fill {
@@ -51,51 +132,8 @@ body {
     transition:0.4s;
 }
 
-button {
-    padding:12px 18px;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.primary { background:#00c6ff; }
-.secondary { background:#555; color:white; }
-
-.nav {
-    display:flex;
-    justify-content:space-between;
-    padding:20px;
-}
-
-.check { margin-top:15px; }
-
-/* MODAL */
-.modal {
-    position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background:rgba(0,0,0,0.6);
-    display:none;
-    justify-content:center;
-    align-items:center;
-}
-
-.modal-content {
-    width:90%;
-    max-width:600px;
-    padding:25px;
-    border-radius:20px;
-    background:#1c2b36;
-    animation:fade 0.3s ease;
-}
-
-.close {
-    float:right;
-    cursor:pointer;
-}
-
-@keyframes fade {
+/* ANIMAÇÃO */
+@keyframes fadeUp {
     from {opacity:0; transform:translateY(20px);}
     to {opacity:1; transform:translateY(0);}
 }
@@ -105,18 +143,27 @@ button {
 
 <body>
 
-<div class="card">
-
-<div class="section" id="section"></div>
-<div class="step" id="step"></div>
-
-<div class="alert" id="alert"></div>
-
 <div class="progress-bar">
 <div class="progress-fill" id="progress"></div>
 </div>
 
-<button onclick="openModal()">🔍 Ver detalhes</button>
+<div class="app">
+
+<div class="header">
+PPGPsi • Sala Híbrida
+</div>
+
+<div class="main">
+
+<div class="container">
+
+<div class="section" id="section"></div>
+
+<div class="title" id="title"></div>
+
+<div class="alert" id="alert"></div>
+
+<div class="details-card" id="details"></div>
 
 <div class="check">
 <input type="checkbox" id="done" onchange="enableNext()">
@@ -125,19 +172,14 @@ button {
 
 </div>
 
-<div class="nav">
-<button class="secondary" onclick="prev()">⬅</button>
-<div id="counter"></div>
-<button class="primary" id="nextBtn" onclick="next()" disabled>➡</button>
 </div>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-<div class="modal-content">
-<span class="close" onclick="closeModal()">✖</span>
-<h3>Detalhes do passo</h3>
-<p id="modalText"></p>
+<div class="nav">
+<button class="secondary" onclick="prev()">⬅ Anterior</button>
+<div id="counter"></div>
+<button class="primary" id="nextBtn" onclick="next()" disabled>Próximo ➡</button>
 </div>
+
 </div>
 
 <script>
@@ -148,115 +190,115 @@ const steps = [
 
 /* ================= INTRODUÇÃO ================= */
 
-["Introdução","Entenda como funcionará a defesa híbrida","",
-"Esta sala conecta participantes presenciais e remotos usando o Google Meet.\n\n👉 O computador transmite a reunião\n👉 A câmera Cougar Cyclops capta imagem e som da sala\n👉 A TV mostra a apresentação para quem está presente\n👉 O Meet transmite para quem está remoto\n\n💡 Você seguirá este guia passo a passo.\nAvance apenas quando tiver concluído cada etapa."],
+["Introdução","Como funciona esta sala de defesa híbrida","",
+"Esta sala conecta pessoas presenciais e remotas.\n\n✔ O computador transmite a reunião\n✔ A câmera Cougar Cyclops capta imagem e áudio da sala\n✔ A TV mostra a apresentação para quem está presente\n✔ O Google Meet conecta a banca remota\n\n👉 Você seguirá este guia passo a passo\n👉 Avance somente após concluir cada etapa"],
 
 /* ================= BOAS PRÁTICAS ================= */
 
-["Boas Práticas","Evite eco e problemas de áudio","⚠️ Isso é essencial",
-"1. NÃO utilize celulares ou notebooks com microfone aberto na sala\n\n2. Se alguém entrar no Meet pelo celular:\n→ manter microfone DESLIGADO\n\n3. Use apenas a Cougar Cyclops como áudio\n\n✔ Isso evita eco (microfonia)\n\n❌ Eco acontece quando dois microfones captam o mesmo som"],
+["Boas Práticas","Evite eco e problemas de áudio","⚠️ MUITO IMPORTANTE",
+"1. NÃO use celular ou notebook com microfone aberto\n\n2. Se alguém entrar no Meet pelo celular:\n→ manter microfone DESLIGADO\n\n3. Use apenas a Cyclops como áudio\n\n✔ Isso evita eco (microfonia)\n\n❌ Eco acontece quando mais de um microfone capta o mesmo som"],
 
-["Boas Práticas","Organize o ambiente da sala","",
-"1. Posicione todos voltados para a câmera\n\n2. Evite ruídos (conversas paralelas)\n\n3. Verifique iluminação\n\n✔ Isso melhora áudio e imagem para a banca"],
+["Boas Práticas","Prepare o ambiente da sala","",
+"1. Todos devem estar voltados para a câmera\n\n2. Evite conversas paralelas\n\n3. Verifique iluminação da sala\n\n✔ Isso melhora áudio e imagem para a banca"],
 
 /* ================= PREPARAÇÃO ================= */
 
 ["Preparação","Ligue o computador da sala","",
-"1. Pressione o botão de ligar\n\n2. Aguarde a tela de login\n\n3. Usuário: Defesa\n\n4. Senha: PPGPsiCAPES7\n\n✔ Se entrou → pronto para uso\n❌ Se não → revise a digitação"],
+"1. Pressione o botão de ligar\n\n2. Aguarde a tela de login\n\n3. Usuário: Defesa\n\n4. Senha: PPGPsiCAPES7\n\n✔ Se entrou → OK\n❌ Se não → verifique digitação"],
 
 ["Preparação","Ligue a TV","",
-"1. Pegue o controle remoto\n\n2. Pressione o botão de ligar\n\n✔ Tela acesa → OK"],
+"1. Pegue o controle\n\n2. Pressione o botão de ligar\n\n✔ Tela acesa → OK"],
 
-["Preparação","Selecione a entrada HDMI correta","",
-"1. No controle, pressione 'Input' ou 'Source'\n\n2. Escolha HDMI conectado ao computador\n\n✔ Se aparece o desktop → correto\n❌ Se tela preta → teste outro HDMI"],
+["Preparação","Selecione o HDMI correto na TV","",
+"1. Pressione 'Input' ou 'Source'\n\n2. Escolha a entrada HDMI conectada ao computador\n\n✔ Se aparece o desktop → OK\n❌ Se tela preta → teste outro HDMI"],
 
 ["Preparação","Ative o modo Estender (duas telas)","",
-"1. Pressione Windows + P\n\n2. Clique em 'Estender'\n\n✔ Agora há duas telas:\n→ Monitor (controle)\n→ TV (apresentação)\n\n💡 Isso evita mostrar coisas erradas na TV"],
+"1. Pressione Windows + P\n\n2. Clique em 'Estender'\n\n✔ Agora existem duas telas:\n→ Monitor (controle)\n→ TV (apresentação)\n\n💡 Evita mostrar coisas erradas na TV"],
 
-["Preparação","Verifique a Cougar Cyclops (equipamento principal)","",
-"1. Localize a Cyclops na mesa\n\n2. Confirme que o cabo USB-C está conectado\n\n3. Entenda o que ela faz:\n→ câmera (imagem da sala)\n→ microfone (capta áudio)\n→ alto-falante (som da banca)\n\n✔ É o único dispositivo necessário\n❌ Se não funcionar → reconectar cabo"],
+["Preparação","Conecte a câmera Cougar Cyclops","",
+"1. Localize a Cyclops na mesa\n\n2. Conecte o cabo USB-C ao computador\n\n3. Ela é um equipamento 3 em 1:\n→ câmera (imagem)\n→ microfone (áudio)\n→ alto-falante (som)\n\n✔ Nesta etapa não é possível ver a imagem ainda\n\n💡 A verificação será feita no Meet"],
 
 ["Preparação","Remova a tampa da câmera","",
-"1. Retire a tampa da lente (no topo)\n\n✔ Se imagem aparece → OK\n❌ Se tela preta → tampa ainda está fechada"],
+"1. Retire a tampa da lente (parte superior)\n\n✔ Importante: sem isso a imagem ficará preta no Meet"],
 
 /* ================= GOOGLE MEET ================= */
 
-["Google Meet","Acesse o e-mail institucional","",
-"1. Abra o navegador (Chrome)\n\n2. Vá em gmail.com\n\n3. Faça login com @ufscar.br\n\n✔ Necessário para gravação"],
+["Google Meet","Acesse seu e-mail institucional","",
+"1. Abra o navegador (Chrome)\n\n2. Acesse gmail.com\n\n3. Faça login com @ufscar.br\n\n✔ Necessário para gravação"],
 
 ["Google Meet","Abra o link da reunião","",
-"1. Clique no link do Meet da defesa\n\n✔ Sala carregada\n\n💡 Ainda NÃO entre — primeiro configure"],
+"1. Clique no link do Meet da defesa\n\n✔ A tela da reunião será aberta\n\n💡 Ainda NÃO entre — vamos configurar antes"],
 
-["Google Meet","Abra as configurações do Meet","",
-"1. Clique nos três pontinhos (⋮)\n\n2. Clique em 'Configurações'\n\n✔ Janela de configuração aberta"],
+["Google Meet","Abra as configurações","",
+"1. Clique nos três pontinhos (⋮)\n\n2. Clique em 'Configurações'\n\n✔ Janela aberta"],
 
-["Google Meet","Selecione a câmera COUGAR Cyclops","",
-"1. Clique na aba 'Vídeo'\n\n2. Em 'Câmera', selecione:\n→ COUGAR Cyclops\n\n3. Observe a imagem\n\n✔ Se você aparece → correto\n❌ Se preto → verificar tampa\n\n💡 A Cyclops mostra toda a sala"],
+["Google Meet","Configure e verifique a câmera","",
+"1. Clique na aba 'Vídeo'\n\n2. Em 'Câmera', selecione:\n→ COUGAR Cyclops\n\n3. Observe a imagem\n\n✔ Se aparece a sala → OK\n❌ Se preta → verifique tampa\n\n💡 Este é o primeiro momento em que você vê a câmera"],
 
-["Google Meet","Configure o áudio corretamente","",
-"1. Clique na aba 'Áudio'\n\n2. Microfone → COUGAR Cyclops\n\n3. Alto-falante → COUGAR Cyclops\n\n4. Fale algo\n\n✔ Barra de áudio mexe → OK\n❌ Se não → verifique cabo USB\n\n💡 Nunca use outro microfone"],
+["Google Meet","Configure e teste o áudio","",
+"1. Clique na aba 'Áudio'\n\n2. Microfone → COUGAR Cyclops\n\n3. Alto-falante → COUGAR Cyclops\n\n4. Fale algo\n\n✔ Barra de áudio se move → OK\n❌ Se não → verifique o cabo USB-C\n\n💡 Nunca use outro microfone"],
 
 ["Google Meet","Ajuste o modo da câmera (Cyclops)","",
-"1. Use os botões físicos na base da câmera\n\n2. Escolha:\n→ Modo debate (pessoas divididas)\n→ Modo panorâmico (visão geral)\n\n✔ Escolha conforme a banca"],
+"1. Use os botões físicos da câmera\n\n2. Escolha:\n→ Modo debate (foca pessoas)\n→ Modo panorâmico (visão geral)\n\n✔ Ajuste conforme necessidade"],
 
 ["Google Meet","Entre na reunião","",
 "1. Clique em 'Participar agora'\n\n✔ Você entrou no Meet"],
 
 ["Google Meet","Inicie a gravação","⚠️ Obrigatório avisar todos",
-"1. Clique em 'Atividades'\n\n2. Clique em 'Gravação'\n\n3. Clique em iniciar\n\n✔ Gravação ativa\n\n💡 Essa gravação é obrigatória"],
+"1. Clique em 'Atividades'\n\n2. Clique em 'Gravação'\n\n3. Clique em iniciar\n\n✔ Gravação ativa\n\n💡 Etapa obrigatória"],
 
 /* ================= APRESENTAÇÃO ================= */
 
-["Apresentação","Organize a apresentação","",
+["Apresentação","Coloque a apresentação na TV","",
 "1. Abra PowerPoint ou PDF\n\n2. Arraste para a TV\n\n✔ TV = público presencial"],
 
 ["Apresentação","Compartilhe no Meet","",
-"1. Clique em 'Apresentar agora'\n\n2. Escolha 'Uma janela' ou 'Uma tela'\n\n3. Selecione apresentação\n\n✔ Remotos veem o slide"],
+"1. Clique em 'Apresentar agora'\n\n2. Escolha 'Uma janela' ou 'Uma tela'\n\n3. Selecione a apresentação\n\n✔ Participantes remotos verão os slides"],
 
-["Apresentação","Confirme se todos veem","",
-"1. Pergunte para a banca\n\n✔ Se todos confirmam → OK\n❌ Se não → revisar compartilhamento"],
+["Apresentação","Confirme se todos estão vendo","",
+"1. Pergunte para a banca\n\n✔ Se todos confirmam → OK\n❌ Se não → revise o compartilhamento"],
 
-["Apresentação","Fique próximo da câmera","",
-"✔ Melhor captação de áudio\n\n💡 A Cyclops capta a sala inteira"],
+["Apresentação","Permaneça próximo da câmera","",
+"✔ Melhor captação de áudio\n\n💡 A Cyclops capta toda a sala"],
 
 /* ================= PROPGWEB ================= */
 
 ["ProPGWeb","Acesse o sistema","",
-"1. Abra navegador\n\n2. Digite: propgweb.ufscar.br\n\n✔ Sistema aberto"],
+"1. Abra o navegador\n\n2. Digite: propgweb.ufscar.br\n\n✔ Sistema aberto"],
 
 ["ProPGWeb","Acesse a banca","",
-"1. Clique em Defesa\n\n2. Clique em 'Manutenção de Bancas'\n\n✔ Lista carregada"],
+"1. Clique em 'Defesa'\n\n2. Clique em 'Manutenção de Bancas'\n\n✔ Lista carregada"],
 
-["ProPGWeb","Confira os dados","⚠️ Etapa crítica",
+["ProPGWeb","Confira os dados da banca","⚠️ Etapa crítica",
 "1. Verifique nomes\n\n2. Verifique e-mails\n\n✔ Se correto → OK\n❌ Se errado → corrigir antes"],
 
-["ProPGWeb","Liberar avaliação","",
-"1. Clique em 'Liberar Avaliação'\n\n✔ Links enviados automaticamente\n\n💡 Sem isso, a banca não consegue avaliar"],
+["ProPGWeb","Clique em Liberar Avaliação","",
+"1. Clique no botão 'Liberar Avaliação'\n\n✔ Links enviados automaticamente\n\n💡 Sem isso a banca não consegue avaliar"],
 
 /* ================= DEFESA ================= */
 
-["Defesa","Início da defesa","",
+["Defesa","Inicie a defesa","",
 "✔ Gravação ativa\n✔ Todos conectados\n✔ Apresentação funcionando"],
 
-["Defesa","Momento de deliberação","",
-"1. Peça para o aluno sair\n\n✔ Apenas banca permanece\n\n💡 Momento sigiloso"],
+["Defesa","Momento de deliberação (sigilo)","",
+"1. Peça para o aluno sair\n\n✔ Apenas a banca permanece\n\n💡 Momento sigiloso"],
 
-["Defesa","Interrompa a gravação","🚫 Proibido gravar",
-"1. Pare a gravação\n\n✔ Garantir sigilo da banca"],
+["Defesa","Interrompa a gravação","🚫 PROIBIDO gravar",
+"1. Pare a gravação\n\n✔ Garante sigilo da banca"],
 
-["Defesa","Envio dos pareceres","",
-"1. Cada membro acessa o e-mail\n\n2. Preenche parecer\n\n✔ Sistema registra automaticamente"],
+["Defesa","A banca envia os pareceres","",
+"1. Cada membro acessa o e-mail\n\n2. Preenche o parecer\n\n✔ Sistema registra automaticamente"],
 
-["Defesa","Acompanhe no sistema","",
-"✔ Verifique se todos concluíram\n\n💡 Nomes ficam como 'concluído'"],
+["Defesa","Acompanhe o envio no sistema","",
+"✔ Verifique se todos estão como 'concluído'"],
 
 /* ================= FINALIZAÇÃO ================= */
 
-["Finalização","Confirme envio dos pareceres","",
-"✔ Todos enviados"],
+["Finalização","Confirme que todos os pareceres foram enviados","",
+"✔ Todos concluídos"],
 
-["Finalização","Finalize no sistema","",
-"✔ Processo encerrado oficialmente"],
+["Finalização","Finalize o processo no sistema","",
+"✔ Encerramento oficial"],
 
 ["Finalização","Desligue os equipamentos","",
 "1. Desligue o computador\n\n2. Desligue a TV"],
@@ -265,13 +307,17 @@ const steps = [
 "✔ Protege a lente da Cyclops"]
 
 ];
-    
+
 function render(){
+
     let s = steps[i];
 
     document.getElementById("section").innerText = s[0];
-    document.getElementById("step").innerText = s[1];
+    document.getElementById("title").innerText = s[1];
     document.getElementById("alert").innerText = s[2];
+
+    document.getElementById("details").innerHTML =
+        s[3].replace(/\n/g,"<br>");
 
     document.getElementById("counter").innerText =
         (i+1)+" / "+steps.length;
@@ -283,21 +329,17 @@ function render(){
     document.getElementById("nextBtn").disabled = true;
 }
 
-function next(){ if(i<steps.length-1){ i++; render(); } }
-function prev(){ if(i>0){ i--; render(); } }
+function next(){
+    if(i < steps.length-1){ i++; render(); }
+}
+
+function prev(){
+    if(i > 0){ i--; render(); }
+}
 
 function enableNext(){
     document.getElementById("nextBtn").disabled =
     !document.getElementById("done").checked;
-}
-
-function openModal(){
-    document.getElementById("modalText").innerText = steps[i][3];
-    document.getElementById("modal").style.display="flex";
-}
-
-function closeModal(){
-    document.getElementById("modal").style.display="none";
 }
 
 render();
