@@ -1,216 +1,145 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body>
 
-<title>Sala de Reuniões Híbrida PPGPsi - "Profª Drª Ana Lúcia Rossito Aiello"</title>
-
-<style>
-
-* { box-sizing: border-box; }
-
-body::before {
-    content: "";
-    position: fixed;
-    bottom: 0;
-    right: 0;
-
-    width: 380px;
-    height: 100vh;
-
-    background: url('https://i.ibb.co/93shZYH3/image.png') no-repeat bottom right;
-    background-size: contain;
-
-    opacity: 0.9;
-    pointer-events: none;
-    z-index: 0;
-
-    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.4));
-}
-    .container {
-    position: relative;
-    z-index: 1;
-}
-body {
-    margin:0;
-    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI";
-    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-    color:white;
-    overflow-x:hidden;
+/* LAYOUT BASE */
+.layout {
+    display: flex;
+    min-height: 100vh;
 }
 
-/* CONTAINER */
-.app {
-    display:flex;
-    flex-direction:column;
-    min-height:100vh;
-}
-    .container {
-    position: relative;
-    z-index: 1;
-}
-
-/* HEADER */
-.header {
-    padding:20px;
-    font-weight:bold;
-    opacity:0.8;
-}
-
-/* MAIN */
+/* LADO ESQUERDO (APP) */
 .main {
-    flex:1;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
-/* CARD PRINCIPAL */
-.container {
-    width:100%;
-    max-width:750px;
+/* LADO DIREITO (PAINEL) */
+.side-panel {
+    width: 420px;
+    background: linear-gradient(180deg, #1c2b36, #0f2027);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.4);
 }
 
-/* TÍTULO */
+/* IMAGEM */
+.image-wrapper {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+}
+
+.image-wrapper img {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+
+    animation: fadeUp 1s ease;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+}
+
+/* TEXTO HOMENAGEM */
+.tribute {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.tribute h3 {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.tribute p {
+    font-size: 0.85em;
+    opacity: 0.7;
+}
+
+/* CONTEÚDO */
+.content {
+    max-width: 700px;
+    margin: auto;
+    padding: 30px;
+}
+
 .title {
-    font-size:2em;
-    font-weight:700;
-    margin-bottom:10px;
+    font-size: 1.8em;
+    font-weight: bold;
 }
 
-/* SEÇÃO */
-.section {
-    opacity:0.6;
-    margin-bottom:10px;
-}
-
-/* CARD DETALHES WOW */
 .details-card {
-    margin-top:20px;
-    padding:25px;
-    border-radius:25px;
-    background:rgba(255,255,255,0.08);
+    margin-top: 20px;
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.08);
     backdrop-filter: blur(20px);
-    box-shadow:
-        0 10px 40px rgba(0,0,0,0.4),
-        inset 0 0 10px rgba(255,255,255,0.05);
-    animation:fadeUp 0.5s ease;
-    line-height:1.6em;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
 }
 
-/* ALERTA */
-.alert {
-    margin-top:15px;
-    padding:12px;
-    border-radius:12px;
-    background:rgba(255,80,80,0.2);
-    font-weight:bold;
-}
-
-/* CHECK */
-.check {
-    margin-top:20px;
-    font-size:1em;
-}
-
-/* NAV */
-.nav {
-    display:flex;
-    justify-content:space-between;
-    padding:20px;
-}
-
-button {
-    padding:14px 20px;
-    border:none;
-    border-radius:14px;
-    cursor:pointer;
-    font-weight:bold;
-    transition:0.2s;
-}
-
-.primary {
-    background:#00c6ff;
-    color:black;
-}
-
-.primary:hover {
-    transform:scale(1.05);
-}
-
-.secondary {
-    background:#444;
-    color:white;
-}
-
-/* PROGRESS */
-.progress-bar {
-    height:6px;
-    background:rgba(255,255,255,0.2);
-}
-
-.progress-fill {
-    height:100%;
-    width:0%;
-    background:#00c6ff;
-    transition:0.4s;
+/* RESPONSIVO */
+@media (max-width: 1000px) {
+    .side-panel {
+        display: none;
+    }
 }
 
 /* ANIMAÇÃO */
 @keyframes fadeUp {
-    from {opacity:0; transform:translateY(20px);}
+    from {opacity:0; transform:translateY(30px);}
     to {opacity:1; transform:translateY(0);}
 }
+<div class="layout">
 
-</style>
-</head>
+    <!-- CONTEÚDO -->
+    <div class="main">
 
-<body>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress"></div>
+        </div>
 
-<div class="progress-bar">
-<div class="progress-fill" id="progress"></div>
-</div>
+        <div class="header">
+            Sala Híbrida PPGPsi
+            <br>
+            <small>Guia de uso da defesa</small>
+        </div>
 
-<div class="app">
+        <div class="content">
 
+            <div class="section" id="section"></div>
+            <div class="title" id="title"></div>
 
-<div class="header">
-Sala Híbrida PPGPsi  
-<br>
-<small style="opacity:0.6;">
-Homenagem à Profª Drª Ana Lucia Rossito Aiello
-</small>
-</div>
+            <div class="alert" id="alert"></div>
 
+            <div class="details-card" id="details"></div>
 
-<div class="main">
+            <div class="check">
+                <input type="checkbox" id="done" onchange="enableNext()">
+                <label>Confirmo que realizei este passo</label>
+            </div>
 
-<div class="container">
+        </div>
 
-<div class="section" id="section"></div>
+        <div class="nav">
+            <button class="secondary" onclick="prev()">⬅ Anterior</button>
+            <div id="counter"></div>
+            <button class="primary" id="nextBtn" onclick="next()" disabled>Próximo ➡</button>
+        </div>
 
-<div class="title" id="title"></div>
+    </div>
 
-<div class="alert" id="alert"></div>
+    <!-- PAINEL HOMENAGEM -->
+    <div class="side-panel">
+        <div class="image-wrapper">
+            <img src="https://i.ibb.co/93shZYH3/image.png" alt="Profª Ana Lucia Rossito Aiello">
+        </div>
 
-<div class="details-card" id="details"></div>
-
-<div class="check">
-<input type="checkbox" id="done" onchange="enableNext()">
-<label>Confirmo que realizei este passo</label>
-</div>
-
-</div>
-
-</div>
-
-<div class="nav">
-<button class="secondary" onclick="prev()">⬅ Anterior</button>
-<div id="counter"></div>
-<button class="primary" id="nextBtn" onclick="next()" disabled>Próximo ➡</button>
-</div>
+        <div class="tribute">
+            <h3>Profª Drª Ana Lucia Rossito Aiello</h3>
+            <p>Docente do Departamento de Psicologia<br>Universidade Federal de São Carlos</p>
+        </div>
+    </div>
 
 </div>
 
