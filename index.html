@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guia Sala Híbrida PPGPsi</title>
+
+<title>Sala Híbrida PPGPsi</title>
 
 <style>
 body {
@@ -11,61 +12,86 @@ body {
     font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
     color: white;
-    overflow-x: hidden;
 }
 
 .container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    padding: 20px;
 }
 
 .card {
-    width: 90%;
-    max-width: 500px;
+    width: 100%;
+    max-width: 700px;
     padding: 25px;
     border-radius: 20px;
     backdrop-filter: blur(15px);
-    background: rgba(255,255,255,0.1);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    animation: fadeIn 0.5s ease;
+    background: rgba(255,255,255,0.08);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    animation: fadeIn 0.4s ease;
+}
+
+h1 {
+    font-size: 1.2em;
+    opacity: 0.8;
 }
 
 h2 {
-    margin-top: 0;
+    margin-top: 5px;
+}
+
+.step-list {
+    margin-top: 15px;
+    line-height: 1.6em;
+}
+
+.step-list li {
+    margin-bottom: 10px;
+}
+
+.highlight {
+    background: rgba(0,198,255,0.15);
+    padding: 5px 8px;
+    border-radius: 8px;
+}
+
+.alert {
+    background: rgba(255, 80, 80, 0.2);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
 }
 
 button {
-    padding: 10px 18px;
-    border: none;
+    padding: 10px 15px;
     border-radius: 10px;
-    margin: 10px 5px 0 0;
+    border: none;
+    margin-top: 15px;
     cursor: pointer;
-    background: #00c6ff;
-    color: black;
     font-weight: bold;
 }
 
+.next { background: #00c6ff; }
+.prev { background: #444; color: white; }
+
 .details {
-    margin-top: 10px;
+    margin-top: 15px;
     display: none;
     font-size: 0.9em;
     opacity: 0.9;
+    border-left: 3px solid #00c6ff;
+    padding-left: 10px;
 }
 
 .progress {
-    position: absolute;
-    top: 0;
-    left: 0;
     height: 5px;
     background: #00c6ff;
-    transition: width 0.3s;
+    transition: 0.3s;
 }
 
 @keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
+    from {opacity:0; transform: translateY(20px);}
+    to {opacity:1; transform: translateY(0);}
 }
 </style>
 </head>
@@ -75,17 +101,24 @@ button {
 <div class="progress" id="progress"></div>
 
 <div class="container">
-    <div class="card" id="card">
-        <h2 id="title"></h2>
-        <p id="content"></p>
+<div class="card">
 
-        <button onclick="toggleDetails()">Ver detalhes</button>
-        <div class="details" id="details"></div>
+<h1>Sala Híbrida PPGPsi</h1>
+<h2 id="title"></h2>
 
-        <br>
-        <button onclick="prevStep()">⬅ Voltar</button>
-        <button onclick="nextStep()">Próximo ➡</button>
-    </div>
+<ul class="step-list" id="content"></ul>
+
+<div class="alert" id="alert"></div>
+
+<button onclick="toggleDetails()">🔍 Ver detalhes</button>
+<div class="details" id="details"></div>
+
+<br>
+
+<button class="prev" onclick="prevStep()">⬅ Voltar</button>
+<button class="next" onclick="nextStep()">Próximo ➡</button>
+
+</div>
 </div>
 
 <script>
@@ -93,45 +126,104 @@ button {
 let step = 0;
 
 const steps = [
+
 {
-title: "💻 Preparação Inicial",
-content: "Ligue o computador e configure as telas.",
-details: "Usuário: Defesa | Senha: PPGPsiCAPES7\nUse Windows + P → Estender\nVerifique HDMI da TV e conexão USB-C da Cougar."
+title: "💻 Preparação Inicial e Hardware",
+content: [
+"Ligue o computador com suas credenciais institucionais.",
+"Verifique se a TV está ligada na entrada HDMI correta.",
+"Pressione <span class='highlight'>Windows + P → Estender</span>.",
+"Confirme conexão do cabo USB-C da Cougar Cyclops.",
+"Remova a tampa de privacidade da câmera."
+],
+alert: "",
+details: "Essa etapa garante que o ambiente físico e digital esteja corretamente preparado. A extensão de tela é essencial para separar controle (monitor) e apresentação (TV)."
 },
+
 {
-title: "🎥 Google Meet",
-content: "Entre no Meet e configure áudio e vídeo.",
-details: "Selecione COUGAR Cyclops para vídeo e áudio.\nAjuste modos da câmera.\nInicie a gravação."
+title: "🎥 Iniciando no Google Meet",
+content: [
+"Faça login no e-mail institucional (@ufscar.br).",
+"Acesse o link do Meet da defesa.",
+"Abra Configurações (3 pontos).",
+"Selecione <span class='highlight'>COUGAR Cyclops</span> como câmera.",
+"Selecione Cyclops como microfone e áudio.",
+"Inicie a gravação em Atividades → Gravação."
+],
+alert: "⚠️ Informe a todos que a sessão será gravada.",
+details: "A Cyclops é uma câmera 360°, então a configuração correta garante captação adequada de áudio e imagem para a banca remota."
 },
+
 {
-title: "📊 Apresentação",
-content: "Compartilhe sua apresentação corretamente.",
-details: "Arraste o slide para a TV.\nNo Meet → Apresentar agora.\nFique próximo da câmera."
+title: "📊 Apresentação (Aluno)",
+content: [
+"Arraste o PowerPoint/PDF para a TV.",
+"No Meet clique em Apresentar agora.",
+"Escolha 'Uma janela' ou 'Uma tela'.",
+"Verifique se o slide está visível para todos.",
+"Permaneça próximo da câmera."
+],
+alert: "",
+details: "A separação de telas evita confusão e permite controle total da apresentação sem interferir na visualização da banca."
 },
+
 {
-title: "📋 ProPGWeb",
-content: "Libere a avaliação da banca.",
-details: "Acesse propgweb.ufscar.br\nVerifique membros.\nClique em Liberar Avaliação."
+title: "📋 ProPGWeb (Fluxo Oficial)",
+content: [
+"Acesse propgweb.ufscar.br.",
+"Vá em Defesa → Manutenção de Bancas.",
+"Confira dados dos membros.",
+"Clique em <span class='highlight'>Liberar Avaliação</span>."
+],
+alert: "⚠️ Se houver erro nos dados, o parecer não será enviado corretamente.",
+details: "A liberação envia automaticamente os links de avaliação para os membros da banca."
 },
+
 {
-title: "⚖️ Defesa",
-content: "Conduza a defesa e a deliberação.",
-details: "Interrompa gravação no sigilo.\nBanca envia parecer.\nOrientador acompanha."
+title: "⚖️ Dinâmica da Defesa",
+content: [
+"Inicie a defesa com gravação ativa.",
+"Durante a deliberação, peça saída do aluno.",
+"Interrompa a gravação.",
+"A banca envia parecer por e-mail.",
+"Oriente acompanha status no sistema."
+],
+alert: "🚫 A deliberação NÃO deve ser gravada.",
+details: "Esse é o momento mais crítico do fluxo. O sigilo é obrigatório e institucional."
 },
+
 {
 title: "✅ Finalização",
-content: "Finalize o processo.",
-details: "Confirme pareceres.\nDesligue equipamentos.\nFeche a sala."
+content: [
+"Confirme envio de todos os pareceres.",
+"Finalize no ProPGWeb.",
+"Desligue computador e TV.",
+"Recoloque tampa da câmera."
+],
+alert: "",
+details: "Essa etapa garante o encerramento formal e preservação dos equipamentos."
 }
+
 ];
 
 function render() {
     document.getElementById("title").innerText = steps[step].title;
-    document.getElementById("content").innerText = steps[step].content;
+
+    let list = document.getElementById("content");
+    list.innerHTML = "";
+
+    steps[step].content.forEach(item => {
+        let li = document.createElement("li");
+        li.innerHTML = "✔ " + item;
+        list.appendChild(li);
+    });
+
+    document.getElementById("alert").innerHTML = steps[step].alert;
     document.getElementById("details").innerText = steps[step].details;
     document.getElementById("details").style.display = "none";
 
-    document.getElementById("progress").style.width = ((step+1)/steps.length*100)+"%";
+    document.getElementById("progress").style.width =
+        ((step+1)/steps.length*100) + "%";
 }
 
 function nextStep(){
