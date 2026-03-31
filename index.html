@@ -107,15 +107,14 @@
     }
     .alert-box.active { display: flex; }
 
-    .step-details { font-size: 1.1rem; line-height: 1.7; color: var(--text-muted); }
+    .step-details { font-size: 1.05rem; line-height: 1.7; color: var(--text-muted); }
     .step-details ul { list-style: none; margin-top: 15px; }
-    .step-details li { margin-bottom: 12px; position: relative; padding-left: 28px; }
+    .step-details li { margin-bottom: 15px; position: relative; padding-left: 28px; }
     .step-details li::before { content: '👉'; position: absolute; left: 0; top: 2px; font-size: 1.1rem; }
     .step-details .highlight { color: #fff; font-weight: 600; }
     .step-details .success-icon { color: var(--success); }
     .step-details .error-icon { color: var(--danger); }
 
-    /* Estilo para links de vídeo */
     .video-btn {
         display: inline-flex; align-items: center; gap: 10px;
         background: rgba(255, 255, 255, 0.1); border: 1px solid var(--primary-color);
@@ -166,7 +165,6 @@
     .btn-next:hover:not(:disabled) { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 229, 255, 0.5); }
     .btn-next:disabled { background: #555; color: #888; cursor: not-allowed; box-shadow: none; transform: none; }
 
-    /* Responsividade */
     @media (max-width: 768px) {
         .welcome-layout { flex-direction: column; text-align: center; }
         .welcome-text p { text-align: center; }
@@ -204,7 +202,7 @@
             <label class="check-container">
                 <input type="checkbox" id="doneCheck" onchange="toggleNextButton()">
                 <span class="checkmark"></span>
-                Confirmo que compreendi / realizei este passo
+                Compreendi / Realizei este passo
             </label>
         </div>
         
@@ -231,199 +229,237 @@ const welcomeData = {
     bio: `
         <p>Este espaço híbrido de defesas foi nomeado em justa homenagem à <b>Profª Drª Ana Lucia Rossito Aiello</b>.</p>
         <p>Docente com trajetória brilhante dedicada ao ensino, pesquisa e extensão, a professora deixou um legado inestimável na formação de profissionais e na construção do conhecimento em Psicologia e Educação Especial.</p>
-        <p>Este guia interativo foi criado para garantir que o uso da tecnologia reflita o padrão de excelência sempre defendido por ela.</p>
+        <p>Este guia interativo foi criado para garantir que o uso da tecnologia reflita o padrão de excelência sempre defendido por ela. Por favor, siga as instruções com atenção.</p>
     `
 };
 
-// --- FLUXO 1: DISCENTE (ALUNO) ---
+// --- FLUXO 1: DISCENTE (ALUNO/ALUNA) ---
 const studentSteps = [
     {
-        section: "Introdução",
-        title: "Prepare tudo ANTES da banca",
+        section: "1. Introdução",
+        title: "Prepare tudo com calma",
         alert: "",
         content: `
-            <p>A ideia principal é deixar tudo pronto com antecedência. Quando a banca começar de fato, <b>nenhuma</b> configuração deverá ser necessária.</p>
+            <p>Olá! Fique tranquilo(a). O segredo para que a tecnologia não atrapalhe a sua defesa é <b>deixar tudo pronto antes de começar</b>.</p>
             <ul>
-                <li><span class="success-icon">✔</span> Meet já aberto e configurado.</li>
-                <li><span class="success-icon">✔</span> Apresentação de slides já compartilhada.</li>
-                <li><span class="success-icon">✔</span> Áudio e vídeo perfeitamente testados.</li>
+                <li><span class="success-icon">✔</span> Siga este passo a passo para configurar as telas e a câmera.</li>
+                <li><span class="success-icon">✔</span> Quando a banca (os professores) começar a falar, você não precisará mexer em mais nenhuma configuração técnica.</li>
             </ul>
         `
     },
     {
-        section: "Boas Práticas",
-        title: "Evite eco e ruídos no áudio",
-        alert: "⚠️ REGRA ESSENCIAL",
+        section: "2. Regras da Sala",
+        title: "Evite ecos e ruídos chatos",
+        alert: "⚠️ REGRA DE OURO PARA O ÁUDIO",
         content: `
+            <p>O "eco" acontece quando dois aparelhos próximos tentam captar e soltar o mesmo som. Para evitar isso:</p>
             <ul>
-                <li><span class="error-icon">❌</span> <b>NÃO</b> use o celular ou notebook pessoal com o microfone aberto dentro da sala.</li>
-                <li>Se alguém entrar no Meet usando celular (para acompanhar o chat, por exemplo), o microfone e o áudio devem estar <b>mutados/desligados</b>.</li>
-                <li>Use <b>apenas</b> o equipamento central (Cougar Cyclops) para captar e reproduzir o som.</li>
+                <li><span class="error-icon">❌</span> <b>NÃO</b> use o seu celular ou seu notebook pessoal com o microfone ou alto-falante ligados dentro da sala.</li>
+                <li>Se alguém da família ou um amigo estiver na sala com você e quiser entrar no link do Google Meet pelo celular, o aparelho dessa pessoa deve estar <b>totalmente no mudo</b>.</li>
+                <li>Todo o som vai sair e entrar apenas pelo equipamento da sala.</li>
             </ul>
         `
     },
     {
-        section: "Preparação",
-        title: "Ligar o Computador da Sala",
-        alert: "Você utilizará o desktop da sala.",
+        section: "3. Os Equipamentos",
+        title: "Ligando as telas",
+        alert: "Você vai usar o computador que já está na mesa.",
         content: `
-            <p>Vamos iniciar ligando os hardwares básicos da sala:</p>
+            <p>Vamos ligar os aparelhos físicos:</p>
             <ul>
-                <li>Ligue o computador da sala.
-                    <br>↳ Usuário: <span class="highlight">Defesa</span>
-                    <br>↳ Senha: <span class="highlight">PPGPsiCAPES7</span>
+                <li>Ligue a tela (monitor pequeno) e o computador da sala (o gabinete).</li>
+                <li>Na tela de entrada, digite:<br>
+                    ↳ Usuário: <span class="highlight">Defesa</span><br>
+                    ↳ Senha: <span class="highlight">PPGPsiCAPES7</span>
                 </li>
-                <li>Com o controle remoto, ligue a TV principal.</li>
-                <li>Se a imagem do PC não aparecer na TV, pressione <b>Source/Input</b> no controle e escolha a entrada <b>HDMI</b> correspondente.</li>
+                <li>Pegue o controle remoto e ligue a TV grande da parede. Se não aparecer a imagem do computador nela, aperte o botão <b>Source</b> ou <b>Input</b> no controle e escolha a entrada <b>HDMI</b>.</li>
             </ul>
         `
     },
     {
-        section: "Preparação",
-        title: "Configurando Múltiplas Telas",
+        section: "4. Organização Visão",
+        title: "Dividindo as telas (Modo Estender)",
         alert: "",
         content: `
-            <p>Para não exibir as abas do seu navegador e anotações para a banca, use o modo Estender.</p>
+            <p>Nós não queremos que os professores vejam suas anotações ou o seu WhatsApp, certo? Para isso, vamos usar a TV como uma "segunda tela".</p>
             <ul>
-                <li>No teclado, pressione a tecla <b>Windows + P</b>.</li>
-                <li>Clique na opção <span class="highlight">Estender</span>.</li>
+                <li>Olhe para o teclado do computador. Segure a tecla com o <b>desenho da janelinha do Windows</b> e, sem soltar, aperte a letra <b>P</b>.</li>
+                <li>Vai aparecer um menu no canto da tela. Com o mouse, clique na opção chamada <span class="highlight">Estender</span>.</li>
             </ul>
-            <p>Agora você tem duas áreas independentes: O monitor da mesa e a TV (onde ficará apenas a apresentação).</p>
+            <p>Pronto! Agora o seu monitor pequeno e a TV grande funcionam como se fossem uma tela só, bem comprida.</p>
         `
     },
     {
-        section: "Preparação",
-        title: "A Câmera Cougar Cyclops",
-        alert: "Não esqueça a tampa!",
+        section: "5. A Câmera da Sala",
+        title: "Preparando a Câmera principal",
+        alert: "Atenção à tampa de proteção!",
         content: `
-            <p>A <i>Cougar Cyclops</i> é o coração da sala híbrida: câmera, microfone e caixa de som.</p>
+            <p>No meio da sala, você verá um aparelho chamado <i>Cougar Cyclops</i>. Ele é a nossa câmera, nosso microfone e nossa caixa de som (tudo em um só).</p>
             <ul>
-                <li>Conecte o cabo USB-C dela ao computador.</li>
-                <li><b>Retire a tampa física</b> da lente no topo do aparelho.</li>
-                <li>Use os botões físicos nela para alternar entre "Modo Debate" (foca em quem fala) ou "Modo Panorâmico" (toda a sala).</li>
-            </ul>
-        `
-    },
-    {
-        section: "Google Meet",
-        title: "Acesso e Teste de Hardware",
-        alert: "⚠️ FAÇA ANTES DE INICIAR A REUNIÃO",
-        content: `
-            <p>Entre no Meet com seu e-mail institucional (@ufscar.br).</p>
-            <ul>
-                <li>Na tela de espera do Meet, clique nos <b>3 pontinhos (⋮) > Configurações</b>.</li>
-                <li>Em <b>Vídeo</b>: Selecione <i>COUGAR Cyclops</i> e confirme se a imagem aparece.</li>
-                <li>Em <b>Áudio</b>: Selecione <i>COUGAR Cyclops</i> tanto para Microfone quanto Alto-falante.</li>
-                <li>Tudo certo? Clique em <span class="highlight">Participar agora</span>.</li>
+                <li>Verifique se o cabo dela está conectado no computador.</li>
+                <li><b>Muito importante:</b> Retire a tampa de plástico que fica em cima da lente dela. Se você esquecer, a imagem vai ficar toda preta lá no Google Meet.</li>
             </ul>
         `
     },
     {
-        section: "Apresentação",
-        title: "Compartilhando Slides",
-        alert: "",
+        section: "6. Entrando na Reunião",
+        title: "Google Meet e Teste de Som",
+        alert: "⚠️ FAÇA ISSO ANTES DOS PROFESSORES ENTRAREM",
         content: `
-            <p>Como a tela está estendida, siga o passo a passo:</p>
+            <p>Abra a internet no computador da sala e entre no link do Google Meet da sua defesa.</p>
             <ul>
-                <li>Abra sua apresentação (PowerPoint/PDF).</li>
-                <li>Arraste a janela do programa para a tela da TV.</li>
-                <li>No Meet, clique em <b>Apresentar agora > Uma janela</b> e selecione os slides.</li>
-                <li>Pergunte à banca remota: <i>"Vocês estão vendo os slides e me ouvindo bem?"</i></li>
+                <li>Antes de clicar em "Participar", clique nos <b>3 pontinhos (⋮)</b> na tela e vá em <b>Configurações</b>.</li>
+                <li>Na aba <b>Vídeo</b>: Escolha a câmera <i>COUGAR Cyclops</i>. Sua imagem deve aparecer na tela.</li>
+                <li>Na aba <b>Áudio</b>: Escolha <i>COUGAR Cyclops</i> tanto para o Microfone quanto para o Alto-falante. Fale alguma coisa em voz alta e veja se a barrinha de som se mexe.</li>
+                <li>Tudo funcionando? Clique em <span class="highlight">Participar agora</span>.</li>
             </ul>
         `
     },
     {
-        section: "Finalização",
-        title: "Pós-Defesa no ProPGWeb",
-        alert: "Atenção aos prazos após a aprovação!",
+        section: "7. Ajuste Visual",
+        title: "Enquadrando a melhor imagem",
+        alert: "Agora que você está se vendo no Meet...",
         content: `
-            <p>A banca terminou e você foi aprovado? Parabéns! Siga as orientações finais:</p>
+            <p>Você precisa garantir que os professores que estão longe consigam te ver bem.</p>
             <ul>
-                <li>Aguarde seu orientador liberar a avaliação no sistema e os membros preencherem os pareceres.</li>
-                <li>Você deverá enviar a versão final do seu trabalho e os documentos complementares via ProPGWeb no prazo estipulado.</li>
+                <li>Olhe para o aparelho da câmera (Cougar Cyclops). Nela, existem alguns botões físicos que você pode apertar.</li>
+                <li>Aperte os botões para testar: Você pode escolher o modo que mostra <b>toda a sala (Panorâmico)</b> ou o modo que <b>foca apenas em quem está falando (Debate)</b>.</li>
+                <li>Olhe para o monitor e escolha o ângulo que achar melhor para a sua defesa.</li>
             </ul>
-            <br>
-            <p>Para não ter dúvidas no envio da documentação, assista ao tutorial abaixo:</p>
+        `
+    },
+    {
+        section: "8. A Apresentação",
+        title: "Colocando os Slides na TV",
+        alert: "Onde cada coisa deve ficar",
+        content: `
+            <p>Agora vamos organizar as janelas para você começar a falar:</p>
+            <ul>
+                <li>Abra o seu arquivo de apresentação (PowerPoint ou PDF).</li>
+                <li>Com o mouse, clique no topo da janela da sua apresentação, segure e <b>arraste-a para o lado</b> até ela aparecer lá na TV grande da parede.</li>
+                <li>Coloque a apresentação em Tela Cheia lá na TV.</li>
+                <li>Deixe a janela do Google Meet aqui no <b>monitor pequeno</b> perto de você. Assim, você controla os slides, mas ainda consegue ver o chat e as pessoas no monitor.</li>
+                <li>No Meet, clique em <b>Apresentar agora > Uma janela</b> e selecione a sua apresentação.</li>
+            </ul>
+        `
+    },
+    {
+        section: "9. A Arguição (Perguntas)",
+        title: "Hora de conversar com a Banca",
+        alert: "Mude as telas de lugar para facilitar",
+        content: `
+            <p>Você terminou de explicar seus slides e agora os professores vão começar a fazer perguntas (Arguição).</p>
+            <ul>
+                <li>Para você não ficar olhando para baixo no monitor pequeno enquanto responde, <b>feche a sua apresentação de slides</b>.</li>
+                <li>Pegue a janela do Google Meet (onde aparecem os rostos dos professores) e <b>arraste-a para a TV grande da parede</b>.</li>
+                <li>Coloque o Meet em tela cheia na TV. Assim, você olha para frente e conversa com a banca olhando "nos olhos" deles.</li>
+            </ul>
+        `
+    },
+    {
+        section: "10. Conclusão",
+        title: "O que fazer após a aprovação?",
+        alert: "Atenção aos prazos pós-defesa!",
+        content: `
+            <p>A defesa acabou e você foi aprovado(a)? Meus parabéns! 🎉<br>Ainda há pequenos passos burocráticos:</p>
+            <ul>
+                <li>Aguarde seu(sua) orientador(a) liberar a avaliação no sistema e os membros preencherem os pareceres online.</li>
+                <li>Você deverá enviar a versão final do seu trabalho e os documentos extras via <b>ProPGWeb</b> no prazo que foi avisado.</li>
+            </ul>
+            <p>Para não ter dúvidas no envio da documentação no sistema, assista ao tutorial abaixo:</p>
             <a href="COLOQUE_O_LINK_AQUI" target="_blank" class="video-btn">
-                ▶ Assistir Tutorial do Discente no ProPGWeb
+                ▶ Assistir Tutorial do(a) Discente no ProPGWeb
             </a>
         `
     }
 ];
 
-// --- FLUXO 2: ORIENTADOR (PRESIDENTE DA BANCA) ---
+// --- FLUXO 2: ORIENTADOR(A) (PRESIDENTE DA BANCA) ---
 const advisorSteps = [
     {
-        section: "Preparação Inicial",
-        title: "Oriente seu Aluno",
-        alert: "Delegue a configuração da sala",
+        section: "1. Preparação Inicial",
+        title: "Oriente seu(sua) aluno(a)",
+        alert: "Delegue a configuração dos cabos e telas",
         content: `
-            <p>A preparação dos equipamentos da sala (PC de mesa, TV e câmera) ficará a cargo do discente.</p>
+            <p>A preparação dos equipamentos da sala (computador da mesa, ligar a TV e arrumar a câmera) ficará a cargo do(a) discente.</p>
             <ul>
-                <li>Peça para o seu aluno <b>escanear o QR CODE</b> impresso na mesa.</li>
-                <li>Esse QR Code dará acesso ao tutorial passo a passo para que ele ligue e configure a máquina, a câmera e compartilhe a apresentação na TV.</li>
+                <li>Peça para o seu(sua) orientando(a) <b>escanear o QR CODE</b> que está impresso em cima da mesa.</li>
+                <li>Esse QR Code abrirá este mesmo guia no celular dele(a), porém na visão de aluno(a), ensinando o passo a passo de como ligar a máquina, dividir as telas e mostrar a apresentação.</li>
             </ul>
         `
     },
     {
-        section: "Seu Equipamento",
-        title: "Use seu Notebook Pessoal",
-        alert: "Não conecte ao áudio principal",
+        section: "2. Checagem do Sistema",
+        title: "Confirme os dados da Banca",
+        alert: "⚠️ ESSENCIAL: FAÇA ISSO ANTES DE COMEÇAR",
         content: `
-            <p>Como presidente da banca, você conduzirá a sessão do seu próprio computador.</p>
+            <p>Para que os professores consigam dar a nota no final, o cadastro no sistema precisa estar perfeito agora.</p>
             <ul>
-                <li>Abra o seu <b>Notebook Pessoal</b> e conecte-se ao Wi-Fi institucional.</li>
+                <li>Confirme com os membros da banca (tanto os presentes quanto os remotos) se os <b>Nomes</b> e, principalmente, os <b>E-mails</b> deles estão corretos no seu sistema.</li>
+                <li><span class="error-icon">❌</span> <b>Se houver algum e-mail errado:</b> O professor não receberá o link para dar o parecer e a defesa vai travar.</li>
+                <li>Se encontrar erros, abra imediatamente um chamado solicitando a alteração na Central de Serviços através do site: <span class="highlight">servicos.ufscar.br</span>.</li>
+            </ul>
+        `
+    },
+    {
+        section: "3. O seu equipamento",
+        title: "Use o seu Notebook Pessoal",
+        alert: "Cuidado com o áudio duplicado",
+        content: `
+            <p>Como presidente da banca, orientamos que você conduza a sessão e acompanhe o chat usando o seu próprio computador.</p>
+            <ul>
+                <li>Abra o seu <b>Notebook Pessoal</b> e conecte-se ao Wi-Fi institucional da UFSCar.</li>
                 <li>Acesse o link do Google Meet da defesa.</li>
-                <li><span class="error-icon">❌</span> <b>MUITO IMPORTANTE:</b> Desligue totalmente o seu microfone e o alto-falante/volume do seu notebook antes de entrar no Meet. O som deve sair exclusivamente pela câmera central da sala para evitar eco.</li>
+                <li><span class="error-icon">❌</span> <b>MUITO IMPORTANTE:</b> Antes de entrar na sala virtual, clique para <b>desligar o microfone</b> e <b>desligar o alto-falante/volume</b> do seu notebook. O som da sala deve sair e entrar apenas pela câmera central da mesa para não gerar um eco insuportável para quem está em casa.</li>
             </ul>
         `
     },
     {
-        section: "Condução",
-        title: "Gravação e Sigilo",
-        alert: "⚠️ ATENÇÃO NA HORA DA DELIBERAÇÃO",
+        section: "4. A Defesa",
+        title: "Regras de Gravação e Sigilo",
+        alert: "⚠️ ATENÇÃO NA HORA DE DISCUTIR A NOTA",
         content: `
-            <p>Regras para a gravação da defesa no Google Meet:</p>
+            <p>Regras para o registro em vídeo da defesa no Google Meet:</p>
             <ul>
-                <li>Faça o login com e-mail institucional para habilitar a gravação.</li>
-                <li>Alerte a todos: <i>"Esta sessão está sendo gravada."</i></li>
-                <li>Inicie a gravação em <b>Atividades > Gravação > Iniciar</b>.</li>
-                <li>Após a arguição, solicite que o aluno e eventuais convidados saiam da sala física para a deliberação das notas.</li>
-                <li><span class="error-icon">🚫</span> <b>PARE A GRAVAÇÃO</b> obrigatoriamente durante o momento de discussão e deliberação das notas (fase sigilosa).</li>
+                <li>Você deve estar logado no Meet com seu e-mail institucional (@ufscar.br) para o botão de gravar aparecer.</li>
+                <li>Avise a todos em voz alta: <i>"Aviso que esta sessão está sendo gravada."</i></li>
+                <li>Comece a gravação clicando no ícone de triângulo/quadrado <b>(Atividades) > Gravação > Iniciar</b>.</li>
+                <li>Quando a apresentação e as perguntas acabarem, peça para o(a) aluno(a) e os convidados saírem da sala física.</li>
+                <li><span class="error-icon">🚫</span> <b>PARE A GRAVAÇÃO</b> obrigatoriamente neste momento! A discussão entre a banca para decidir a nota é de caráter totalmente sigiloso.</li>
             </ul>
         `
     },
     {
-        section: "Burocracia",
+        section: "5. Burocracia 1",
         title: "Liberação de Avaliação (ProPGWeb)",
-        alert: "Faça isso logo após a deliberação",
+        alert: "Faça isso logo após decidirem a nota",
         content: `
-            <p>Com as notas decididas, é hora de oficializar no sistema.</p>
+            <p>Com as notas decididas, é hora de oficializar no sistema para que os professores possam assinar.</p>
             <ul>
-                <li>Acesse <span class="highlight">propgweb.ufscar.br</span>.</li>
-                <li>Vá em <b>Defesa > Manutenção de Bancas</b> e libere a avaliação para os membros.</li>
+                <li>Acesse o site <span class="highlight">propgweb.ufscar.br</span>.</li>
+                <li>Vá no menu superior em <b>Defesa > Manutenção de Bancas</b> e clique para liberar a avaliação para os membros.</li>
             </ul>
-            <p>Em caso de dúvidas sobre como realizar essa liberação, assista ao vídeo abaixo:</p>
+            <p>Em caso de dúvidas sobre onde clicar para fazer essa liberação, assista ao vídeo abaixo:</p>
             <a href="COLOQUE_O_LINK_AQUI" target="_blank" class="video-btn">
-                ▶ Assistir Tutorial: Liberação pelo Orientador
+                ▶ Assistir Tutorial: Liberação pelo(a) Orientador(a)
             </a>
         `
     },
     {
-        section: "Burocracia",
+        section: "6. Burocracia 2",
         title: "Parecer da Banca Examinadora",
-        alert: "",
+        alert: "Acompanhe até o fim",
         content: `
-            <p>Os membros remotos da banca receberão um e-mail do sistema para preencherem seus pareceres.</p>
+            <p>Após a sua liberação, os membros remotos da banca receberão um e-mail automático do sistema para preencherem seus pareceres e darem a nota formal.</p>
             <ul>
-                <li>Acompanhe no ProPGWeb até que todos os membros apareçam com status <b>Concluído</b>.</li>
-                <li>Se algum membro externo tiver dificuldades no preenchimento do sistema, envie a ele o link do tutorial abaixo:</li>
+                <li>Fique acompanhando a tela do ProPGWeb. Você precisa ver o status de todos os membros mudar para <b>Concluído</b>.</li>
+                <li>Se algum professor de fora da universidade tiver dificuldades no preenchimento do sistema, você pode copiar e enviar a ele o link do tutorial abaixo:</li>
             </ul>
             <a href="COLOQUE_O_LINK_AQUI" target="_blank" class="video-btn">
-                ▶ Copiar link / Assistir Tutorial para Membros da Banca
+                ▶ Copiar link / Tutorial para Membros da Banca
             </a>
             <br><br>
-            <p>✨ <i>Após o preenchimento de todos, a defesa está formalmente concluída. Parabéns!</i></p>
+            <p>✨ <i>Após o preenchimento de todos, a defesa está formalmente concluída. Parabéns pela condução!</i></p>
         `
     }
 ];
@@ -492,25 +528,24 @@ function renderProfileSelection() {
     appFooter.style.display = 'flex';
     checkWrapper.style.display = 'none';
     
-    // Configura botões do rodapé
     btnPrev.style.display = 'flex';
     btnNext.style.display = 'none';
-    appFooter.style.justifyContent = 'flex-start'; // Traz o botão 'Anterior' para a esquerda
+    appFooter.style.justifyContent = 'flex-start'; 
     progressBar.style.width = '10%';
 
     contentArea.innerHTML = `
         <div class="profile-selection-container">
-            <h2>Selecione o seu perfil:</h2>
+            <h2>Quem é você nesta banca?</h2>
             <div class="profile-buttons">
                 <div class="btn-profile" onclick="selectProfile('advisor')">
                     <span>🎓</span>
-                    <strong>Sou o Orientador(a)</strong>
-                    <p>Presidente da Banca</p>
+                    <strong>Sou Orientador(a)</strong>
+                    <p>Presidente da Banca Docente</p>
                 </div>
                 <div class="btn-profile" onclick="selectProfile('student')">
                     <span>📝</span>
-                    <strong>Sou o Discente</strong>
-                    <p>Aluno apresentando a defesa</p>
+                    <strong>Sou Discente</strong>
+                    <p>Aluno(a) apresentando a defesa</p>
                 </div>
             </div>
         </div>
@@ -528,14 +563,12 @@ function renderFlowStep() {
     const step = currentFlow[currentStepIndex];
     const totalSteps = currentFlow.length;
     
-    headerProfileType.innerText = userProfile === 'student' ? 'Guia do Discente' : 'Guia do Orientador';
+    headerProfileType.innerText = userProfile === 'student' ? 'Guia do(a) Discente' : 'Guia do(a) Orientador(a)';
     stepCounter.innerText = `${currentStepIndex + 1} / ${totalSteps}`;
     
-    // Calcula progresso considerando que a barra já começa um pouco preenchida após as telas iniciais
     const progressPercent = ((currentStepIndex + 1) / totalSteps) * 100;
     progressBar.style.width = `${progressPercent}%`;
 
-    // Verifica se tem alerta
     let alertHTML = '';
     if (step.alert) {
         alertHTML = `
@@ -589,7 +622,6 @@ function nextAction() {
             renderApp();
         } else {
             alert("Tutorial concluído! Desejamos uma excelente defesa.");
-            // Opcional: Voltar para a tela inicial
             appState = 'welcome';
             renderApp();
         }
@@ -605,7 +637,6 @@ function prevAction() {
             currentStepIndex--;
             renderApp();
         } else {
-            // Se estiver no passo 0 do fluxo, volta para seleção de perfil
             appState = 'profile';
             renderApp();
         }
