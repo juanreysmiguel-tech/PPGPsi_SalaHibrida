@@ -33,13 +33,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        
-        /* Imagem de Fundo Solicitada */
         background: url('https://i.ibb.co/j9pWwQCp/image.png') no-repeat center center fixed;
         background-size: cover;
     }
 
-    /* Overlay escuro para garantir leitura perfeita sobre a imagem */
     .overlay {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
@@ -68,15 +65,9 @@
     }
 
     /* ================= HEADER E PROGRESSO ================= */
-    .progress-container {
-        height: 6px;
-        background: rgba(255, 255, 255, 0.1);
-        width: 100%;
-    }
-    
+    .progress-container { height: 6px; background: rgba(255, 255, 255, 0.1); width: 100%; }
     .progress-bar {
-        height: 100%;
-        width: 0%;
+        height: 100%; width: 0%;
         background: var(--primary-color);
         box-shadow: 0 0 10px var(--primary-color);
         transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -90,270 +81,96 @@
         align-items: center;
     }
 
-    .header-titles h2 {
-        font-family: 'Poppins', sans-serif;
-        font-size: 1.2rem;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-    }
-
-    .header-titles span {
-        font-size: 0.85rem;
-        color: var(--primary-color);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: 600;
-    }
-
-    .step-counter {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 8px 16px;
-        border-radius: 20px;
-        font-weight: 600;
-        font-size: 0.9rem;
-    }
+    .header-titles h2 { font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 600; }
+    .header-titles span { font-size: 0.85rem; color: var(--primary-color); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+    .step-counter { background: rgba(255, 255, 255, 0.1); padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 0.9rem; }
 
     /* ================= CONTEÚDO DINÂMICO ================= */
     .content-area {
-        padding: 40px;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        transition: opacity 0.3s ease, transform 0.3s ease;
+        padding: 40px; flex: 1; display: flex; flex-direction: column;
+        justify-content: center; transition: opacity 0.3s ease, transform 0.3s ease;
     }
-
-    .content-area.fade-out {
-        opacity: 0;
-        transform: translateY(10px);
-    }
+    .content-area.fade-out { opacity: 0; transform: translateY(10px); }
 
     .section-badge {
-        display: inline-block;
-        background: rgba(255, 255, 255, 0.1);
-        padding: 6px 14px;
-        border-radius: 8px;
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 15px;
-        color: var(--text-muted);
+        display: inline-block; background: rgba(255, 255, 255, 0.1); padding: 6px 14px;
+        border-radius: 8px; font-size: 0.85rem; text-transform: uppercase;
+        letter-spacing: 1px; margin-bottom: 15px; color: var(--text-muted); width: fit-content;
     }
 
-    .step-title {
-        font-family: 'Poppins', sans-serif;
-        font-size: 2.2rem;
-        line-height: 1.2;
-        margin-bottom: 20px;
-        color: #fff;
-    }
+    .step-title { font-family: 'Poppins', sans-serif; font-size: 2.2rem; line-height: 1.2; margin-bottom: 20px; color: #fff; }
 
     .alert-box {
-        display: none;
-        background: rgba(255, 77, 77, 0.15);
-        border-left: 4px solid var(--danger);
-        padding: 12px 20px;
-        border-radius: 0 8px 8px 0;
-        margin-bottom: 25px;
-        color: #ffcccc;
-        font-weight: 500;
-        align-items: center;
-        gap: 10px;
+        display: none; background: rgba(255, 77, 77, 0.15); border-left: 4px solid var(--danger);
+        padding: 12px 20px; border-radius: 0 8px 8px 0; margin-bottom: 25px; color: #ffcccc;
+        font-weight: 500; align-items: center; gap: 10px;
     }
-
     .alert-box.active { display: flex; }
 
-    .step-details {
-        font-size: 1.1rem;
-        line-height: 1.7;
-        color: var(--text-muted);
-    }
-
-    .step-details ul {
-        list-style: none;
-        margin-top: 15px;
-    }
-
-    .step-details li {
-        margin-bottom: 12px;
-        position: relative;
-        padding-left: 28px;
-    }
-
-    .step-details li::before {
-        content: '👉';
-        position: absolute;
-        left: 0;
-        top: 2px;
-        font-size: 1.1rem;
-    }
-
+    .step-details { font-size: 1.1rem; line-height: 1.7; color: var(--text-muted); }
+    .step-details ul { list-style: none; margin-top: 15px; }
+    .step-details li { margin-bottom: 12px; position: relative; padding-left: 28px; }
+    .step-details li::before { content: '👉'; position: absolute; left: 0; top: 2px; font-size: 1.1rem; }
     .step-details .highlight { color: #fff; font-weight: 600; }
     .step-details .success-icon { color: var(--success); }
     .step-details .error-icon { color: var(--danger); }
 
-    /* ================= TELA DE BOAS-VINDAS / BIOGRAFIA ================= */
-    .welcome-layout {
-        display: flex;
-        align-items: center;
-        gap: 40px;
+    /* Estilo para links de vídeo */
+    .video-btn {
+        display: inline-flex; align-items: center; gap: 10px;
+        background: rgba(255, 255, 255, 0.1); border: 1px solid var(--primary-color);
+        color: var(--primary-color); padding: 12px 20px; border-radius: 12px;
+        text-decoration: none; font-weight: 600; font-size: 1rem; margin-top: 15px;
+        transition: all 0.3s ease;
     }
+    .video-btn:hover { background: var(--primary-color); color: #000; box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3); }
 
-    .welcome-photo {
-        width: 250px;
-        height: 250px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 4px solid var(--border-glass);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
+    /* ================= TELAS ESPECIAIS ================= */
+    .welcome-layout { display: flex; align-items: center; gap: 40px; }
+    .welcome-photo { width: 250px; height: 250px; border-radius: 50%; object-fit: cover; border: 4px solid var(--border-glass); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .welcome-text h1 { font-family: 'Poppins', sans-serif; font-size: 2.5rem; margin-bottom: 10px; background: linear-gradient(to right, #ffffff, var(--primary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .welcome-text h3 { color: var(--primary-color); font-weight: 400; margin-bottom: 20px; font-size: 1.2rem; }
+    .welcome-text p { color: var(--text-muted); line-height: 1.6; font-size: 1.05rem; margin-bottom: 15px; text-align: justify; }
 
-    .welcome-text h1 {
-        font-family: 'Poppins', sans-serif;
-        font-size: 2.5rem;
-        margin-bottom: 10px;
-        background: linear-gradient(to right, #ffffff, var(--primary-color));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+    .profile-selection-container { text-align: center; }
+    .profile-selection-container h2 { font-family: 'Poppins', sans-serif; font-size: 2rem; margin-bottom: 30px; }
+    .profile-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    
+    .btn-profile {
+        flex: 1; min-width: 250px; padding: 40px 20px;
+        background: rgba(255, 255, 255, 0.05); border: 2px solid var(--border-glass);
+        border-radius: 16px; color: #fff; cursor: pointer; transition: all 0.3s ease;
+        display: flex; flex-direction: column; align-items: center; gap: 15px;
     }
-
-    .welcome-text h3 {
-        color: var(--primary-color);
-        font-weight: 400;
-        margin-bottom: 20px;
-        font-size: 1.2rem;
-    }
-
-    .welcome-text p {
-        color: var(--text-muted);
-        line-height: 1.6;
-        font-size: 1.05rem;
-        margin-bottom: 15px;
-        text-align: justify;
-    }
+    .btn-profile span { font-size: 3rem; }
+    .btn-profile strong { font-family: 'Poppins', sans-serif; font-size: 1.3rem; }
+    .btn-profile p { font-size: 0.9rem; color: var(--text-muted); margin-top: 10px; }
+    .btn-profile:hover { border-color: var(--primary-color); background: rgba(0, 229, 255, 0.1); transform: translateY(-5px); }
 
     /* ================= FOOTER / CONTROLES ================= */
-    .footer {
-        padding: 25px 40px;
-        background: rgba(0, 0, 0, 0.2);
-        border-top: 1px solid var(--border-glass);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    /* Custom Checkbox */
-    .check-container {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        font-size: 1rem;
-        user-select: none;
-        color: #fff;
-        transition: 0.3s;
-    }
-
-    .check-container:hover { color: var(--primary-color); }
+    .footer { padding: 25px 40px; background: rgba(0, 0, 0, 0.2); border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center; }
     
-    .check-container input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        height: 0;
-        width: 0;
-    }
-
-    .checkmark {
-        height: 24px;
-        width: 24px;
-        background-color: rgba(255,255,255,0.1);
-        border: 2px solid rgba(255,255,255,0.3);
-        border-radius: 6px;
-        margin-right: 15px;
-        position: relative;
-        transition: 0.3s;
-    }
-
-    .check-container input:checked ~ .checkmark {
-        background-color: var(--primary-color);
-        border-color: var(--primary-color);
-    }
-
-    .checkmark:after {
-        content: "";
-        position: absolute;
-        display: none;
-        left: 7px;
-        top: 3px;
-        width: 5px;
-        height: 10px;
-        border: solid #000;
-        border-width: 0 2px 2px 0;
-        transform: rotate(45deg);
-    }
-
+    .check-container { display: flex; align-items: center; cursor: pointer; font-size: 1rem; user-select: none; color: #fff; transition: 0.3s; }
+    .check-container:hover { color: var(--primary-color); }
+    .check-container input { position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0; }
+    .checkmark { height: 24px; width: 24px; background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.3); border-radius: 6px; margin-right: 15px; position: relative; transition: 0.3s; }
+    .check-container input:checked ~ .checkmark { background-color: var(--primary-color); border-color: var(--primary-color); }
+    .checkmark:after { content: ""; position: absolute; display: none; left: 7px; top: 3px; width: 5px; height: 10px; border: solid #000; border-width: 0 2px 2px 0; transform: rotate(45deg); }
     .check-container input:checked ~ .checkmark:after { display: block; }
 
-    /* Botões */
-    .nav-buttons {
-        display: flex;
-        gap: 15px;
-    }
-
-    button {
-        padding: 14px 28px;
-        border: none;
-        border-radius: 12px;
-        font-family: 'Poppins', sans-serif;
-        font-weight: 600;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .btn-prev {
-        background: rgba(255, 255, 255, 0.1);
-        color: #fff;
-        border: 1px solid var(--border-glass);
-    }
-
+    .nav-buttons { display: flex; gap: 15px; margin-left: auto; }
+    button.action-btn { padding: 14px 28px; border: none; border-radius: 12px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
+    .btn-prev { background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid var(--border-glass); }
     .btn-prev:hover { background: rgba(255, 255, 255, 0.2); }
-
-    .btn-next {
-        background: var(--primary-color);
-        color: #000;
-        box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3);
-    }
-
-    .btn-next:hover:not(:disabled) {
-        background: var(--primary-hover);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0, 229, 255, 0.5);
-    }
-
-    .btn-next:disabled {
-        background: #555;
-        color: #888;
-        cursor: not-allowed;
-        box-shadow: none;
-        transform: none;
-    }
+    .btn-next { background: var(--primary-color); color: #000; box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3); }
+    .btn-next:hover:not(:disabled) { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 229, 255, 0.5); }
+    .btn-next:disabled { background: #555; color: #888; cursor: not-allowed; box-shadow: none; transform: none; }
 
     /* Responsividade */
     @media (max-width: 768px) {
-        .welcome-layout {
-            flex-direction: column;
-            text-align: center;
-        }
+        .welcome-layout { flex-direction: column; text-align: center; }
         .welcome-text p { text-align: center; }
-        .footer {
-            flex-direction: column;
-            gap: 20px;
-            align-items: stretch;
-        }
+        .footer { flex-direction: column; gap: 20px; align-items: stretch; }
         .nav-buttons { justify-content: space-between; }
         .header { padding: 20px; }
         .content-area { padding: 20px; }
@@ -366,40 +183,36 @@
 <div class="overlay"></div>
 
 <div class="app-container">
-    <!-- Barra de Progresso Superior -->
     <div class="progress-container">
         <div class="progress-bar" id="progressBar"></div>
     </div>
 
-    <!-- Header (Visível após a introdução) -->
     <div class="header" id="appHeader" style="display: none;">
         <div class="header-titles">
-            <span>Guia Oficial</span>
+            <span id="headerProfileType">Guia Oficial</span>
             <h2>Sala PPGPsi</h2>
         </div>
         <div class="step-counter" id="stepCounter">1 / 10</div>
     </div>
 
-    <!-- Área de Conteúdo Dinâmico -->
     <div class="content-area" id="contentArea">
-        <!-- O conteúdo é injetado via JS aqui -->
+        <!-- Injetado via JS -->
     </div>
 
-    <!-- Rodapé de Ações -->
-    <div class="footer">
+    <div class="footer" id="appFooter">
         <div id="checkWrapper">
             <label class="check-container">
                 <input type="checkbox" id="doneCheck" onchange="toggleNextButton()">
                 <span class="checkmark"></span>
-                Confirmo que realizei este passo
+                Confirmo que compreendi / realizei este passo
             </label>
         </div>
         
         <div class="nav-buttons">
-            <button class="btn-prev" id="btnPrev" onclick="prevStep()" style="display: none;">
+            <button class="action-btn btn-prev" id="btnPrev" onclick="prevAction()" style="display: none;">
                 ⬅ Anterior
             </button>
-            <button class="btn-next" id="btnNext" onclick="nextStep()">
+            <button class="action-btn btn-next" id="btnNext" onclick="nextAction()">
                 Iniciar Guia ➡
             </button>
         </div>
@@ -407,22 +220,23 @@
 </div>
 
 <script>
-/* 
-Estrutura de dados modernizada usando Objetos.
-Permite HTML customizado para listas, ícones e destaques.
-*/
-const stepsData = [
-    {
-        isWelcome: true,
-        title: "Sala Híbrida Profª Drª Ana Lucia Rossito Aiello",
-        subtitle: "Departamento de Psicologia (PPGPsi) - UFSCar",
-        photo: "https://www.ppgees.ufscar.br/pt-br/assets/imagens/docentes/ana-lucia-rossito-aiello/@@images/b618c58e-04e2-45b7-a2c3-136ee9c1447a.jpeg",
-        bio: `
-            <p>Este espaço híbrido de defesas foi nomeado em justa homenagem à <b>Profª Drª Ana Lucia Rossito Aiello</b>.</p>
-            <p>Docente com trajetória brilhante dedicada ao ensino, pesquisa e extensão, a professora deixou um legado inestimável na formação de profissionais e na construção do conhecimento em Psicologia e Educação Especial.</p>
-            <p>Este guia interativo foi criado para garantir que o uso da tecnologia reflita o padrão de excelência sempre defendido por ela.</p>
-        `
-    },
+// =======================================================
+// DADOS DO SISTEMA
+// =======================================================
+
+const welcomeData = {
+    title: "Sala Híbrida Profª Drª Ana Lucia Rossito Aiello",
+    subtitle: "Departamento de Psicologia (PPGPsi) - UFSCar",
+    photo: "https://www.ppgees.ufscar.br/pt-br/assets/imagens/docentes/ana-lucia-rossito-aiello/@@images/b618c58e-04e2-45b7-a2c3-136ee9c1447a.jpeg",
+    bio: `
+        <p>Este espaço híbrido de defesas foi nomeado em justa homenagem à <b>Profª Drª Ana Lucia Rossito Aiello</b>.</p>
+        <p>Docente com trajetória brilhante dedicada ao ensino, pesquisa e extensão, a professora deixou um legado inestimável na formação de profissionais e na construção do conhecimento em Psicologia e Educação Especial.</p>
+        <p>Este guia interativo foi criado para garantir que o uso da tecnologia reflita o padrão de excelência sempre defendido por ela.</p>
+    `
+};
+
+// --- FLUXO 1: DISCENTE (ALUNO) ---
+const studentSteps = [
     {
         section: "Introdução",
         title: "Prepare tudo ANTES da banca",
@@ -434,7 +248,6 @@ const stepsData = [
                 <li><span class="success-icon">✔</span> Apresentação de slides já compartilhada.</li>
                 <li><span class="success-icon">✔</span> Áudio e vídeo perfeitamente testados.</li>
             </ul>
-            <p>💡 <i>Isso evita atrasos, constrangimentos e problemas técnicos durante a defesa.</i></p>
         `
     },
     {
@@ -447,13 +260,12 @@ const stepsData = [
                 <li>Se alguém entrar no Meet usando celular (para acompanhar o chat, por exemplo), o microfone e o áudio devem estar <b>mutados/desligados</b>.</li>
                 <li>Use <b>apenas</b> o equipamento central (Cougar Cyclops) para captar e reproduzir o som.</li>
             </ul>
-            <p>💡 <i>O eco acontece quando dois dispositivos próximos captam e reproduzem o mesmo áudio da reunião.</i></p>
         `
     },
     {
         section: "Preparação",
-        title: "Ligando os Equipamentos",
-        alert: "",
+        title: "Ligar o Computador da Sala",
+        alert: "Você utilizará o desktop da sala.",
         content: `
             <p>Vamos iniciar ligando os hardwares básicos da sala:</p>
             <ul>
@@ -476,8 +288,7 @@ const stepsData = [
                 <li>No teclado, pressione a tecla <b>Windows + P</b>.</li>
                 <li>Clique na opção <span class="highlight">Estender</span>.</li>
             </ul>
-            <p>Agora você tem duas áreas independentes:<br>
-            Monitor pequeno (onde você controla o Meet) e a TV (onde ficará apenas a apresentação).</p>
+            <p>Agora você tem duas áreas independentes: O monitor da mesa e a TV (onde ficará apenas a apresentação).</p>
         `
     },
     {
@@ -485,11 +296,11 @@ const stepsData = [
         title: "A Câmera Cougar Cyclops",
         alert: "Não esqueça a tampa!",
         content: `
-            <p>A <i>Cougar Cyclops</i> é o coração da sala híbrida: ela é câmera, microfone e caixa de som ao mesmo tempo.</p>
+            <p>A <i>Cougar Cyclops</i> é o coração da sala híbrida: câmera, microfone e caixa de som.</p>
             <ul>
                 <li>Conecte o cabo USB-C dela ao computador.</li>
-                <li><b>Retire a tampa física</b> da lente no topo do aparelho. Se esquecer, a imagem no Meet ficará toda preta.</li>
-                <li>Você pode usar os botões físicos nela para alternar entre "Modo Debate" (foca em quem fala) ou "Modo Panorâmico" (mostra toda a sala).</li>
+                <li><b>Retire a tampa física</b> da lente no topo do aparelho.</li>
+                <li>Use os botões físicos nela para alternar entre "Modo Debate" (foca em quem fala) ou "Modo Panorâmico" (toda a sala).</li>
             </ul>
         `
     },
@@ -498,11 +309,11 @@ const stepsData = [
         title: "Acesso e Teste de Hardware",
         alert: "⚠️ FAÇA ANTES DE INICIAR A REUNIÃO",
         content: `
-            <p>Entre no Meet com seu e-mail institucional (@ufscar.br) para ter acesso à gravação.</p>
+            <p>Entre no Meet com seu e-mail institucional (@ufscar.br).</p>
             <ul>
                 <li>Na tela de espera do Meet, clique nos <b>3 pontinhos (⋮) > Configurações</b>.</li>
                 <li>Em <b>Vídeo</b>: Selecione <i>COUGAR Cyclops</i> e confirme se a imagem aparece.</li>
-                <li>Em <b>Áudio</b>: Selecione <i>COUGAR Cyclops</i> tanto para o Microfone quanto para o Alto-falante. Fale alto e veja se a barrinha se move.</li>
+                <li>Em <b>Áudio</b>: Selecione <i>COUGAR Cyclops</i> tanto para Microfone quanto Alto-falante.</li>
                 <li>Tudo certo? Clique em <span class="highlight">Participar agora</span>.</li>
             </ul>
         `
@@ -512,7 +323,7 @@ const stepsData = [
         title: "Compartilhando Slides",
         alert: "",
         content: `
-            <p>Como a tela está estendida, siga o passo a passo para exibir corretamente:</p>
+            <p>Como a tela está estendida, siga o passo a passo:</p>
             <ul>
                 <li>Abra sua apresentação (PowerPoint/PDF).</li>
                 <li>Arraste a janela do programa para a tela da TV.</li>
@@ -522,149 +333,282 @@ const stepsData = [
         `
     },
     {
-        section: "ProPGWeb",
-        title: "Conferência do Sistema",
-        alert: "⚠️ ETAPA CRÍTICA",
-        content: `
-            <p>Acesse <span class="highlight">propgweb.ufscar.br</span>, vá em <b>Defesa > Manutenção de Bancas</b>.</p>
-            <ul>
-                <li>Verifique os nomes e, <b>principalmente</b>, os e-mails dos membros da banca.</li>
-                <li>Se algum e-mail estiver errado, corrija <b>antes</b> de iniciar a defesa. Se não corrigir, o avaliador não receberá o link para dar o parecer.</li>
-            </ul>
-            <p>Deixe a tela logada e pronta para o momento final.</p>
-        `
-    },
-    {
-        section: "A Defesa",
-        title: "Regras de Gravação e Sigilo",
-        alert: "",
-        content: `
-            <p>A banca chegou no horário? A apresentação vai começar:</p>
-            <ul>
-                <li>Clique em <b>Atividades > Gravação > Iniciar</b> no Meet.</li>
-                <li>Após a apresentação e arguição, ocorre a deliberação. Neste momento, o aluno deve sair da sala física.</li>
-                <li><span class="error-icon">🚫</span> <b>PARE A GRAVAÇÃO</b> durante a deliberação (este momento é de sigilo da banca).</li>
-            </ul>
-        `
-    },
-    {
         section: "Finalização",
-        title: "Pareceres e Encerramento",
-        alert: "",
+        title: "Pós-Defesa no ProPGWeb",
+        alert: "Atenção aos prazos após a aprovação!",
         content: `
-            <p>Para concluir os trabalhos com sucesso:</p>
+            <p>A banca terminou e você foi aprovado? Parabéns! Siga as orientações finais:</p>
             <ul>
-                <li>Libere a avaliação no ProPGWeb. A banca receberá por e-mail.</li>
-                <li>Acompanhe no sistema até que todos apareçam como <b>Concluído</b>.</li>
-                <li>Após o encerramento oficial, desligue o PC, a TV e coloque novamente a tampa de proteção na câmera Cyclops.</li>
+                <li>Aguarde seu orientador liberar a avaliação no sistema e os membros preencherem os pareceres.</li>
+                <li>Você deverá enviar a versão final do seu trabalho e os documentos complementares via ProPGWeb no prazo estipulado.</li>
             </ul>
-            <p>✨ <i>Parabéns por conduzir a banca com excelência!</i></p>
+            <br>
+            <p>Para não ter dúvidas no envio da documentação, assista ao tutorial abaixo:</p>
+            <a href="COLOQUE_O_LINK_AQUI" target="_blank" class="video-btn">
+                ▶ Assistir Tutorial do Discente no ProPGWeb
+            </a>
         `
     }
 ];
 
-let currentStep = 0;
-const totalDataSteps = stepsData.length;
+// --- FLUXO 2: ORIENTADOR (PRESIDENTE DA BANCA) ---
+const advisorSteps = [
+    {
+        section: "Preparação Inicial",
+        title: "Oriente seu Aluno",
+        alert: "Delegue a configuração da sala",
+        content: `
+            <p>A preparação dos equipamentos da sala (PC de mesa, TV e câmera) ficará a cargo do discente.</p>
+            <ul>
+                <li>Peça para o seu aluno <b>escanear o QR CODE</b> impresso na mesa.</li>
+                <li>Esse QR Code dará acesso ao tutorial passo a passo para que ele ligue e configure a máquina, a câmera e compartilhe a apresentação na TV.</li>
+            </ul>
+        `
+    },
+    {
+        section: "Seu Equipamento",
+        title: "Use seu Notebook Pessoal",
+        alert: "Não conecte ao áudio principal",
+        content: `
+            <p>Como presidente da banca, você conduzirá a sessão do seu próprio computador.</p>
+            <ul>
+                <li>Abra o seu <b>Notebook Pessoal</b> e conecte-se ao Wi-Fi institucional.</li>
+                <li>Acesse o link do Google Meet da defesa.</li>
+                <li><span class="error-icon">❌</span> <b>MUITO IMPORTANTE:</b> Desligue totalmente o seu microfone e o alto-falante/volume do seu notebook antes de entrar no Meet. O som deve sair exclusivamente pela câmera central da sala para evitar eco.</li>
+            </ul>
+        `
+    },
+    {
+        section: "Condução",
+        title: "Gravação e Sigilo",
+        alert: "⚠️ ATENÇÃO NA HORA DA DELIBERAÇÃO",
+        content: `
+            <p>Regras para a gravação da defesa no Google Meet:</p>
+            <ul>
+                <li>Faça o login com e-mail institucional para habilitar a gravação.</li>
+                <li>Alerte a todos: <i>"Esta sessão está sendo gravada."</i></li>
+                <li>Inicie a gravação em <b>Atividades > Gravação > Iniciar</b>.</li>
+                <li>Após a arguição, solicite que o aluno e eventuais convidados saiam da sala física para a deliberação das notas.</li>
+                <li><span class="error-icon">🚫</span> <b>PARE A GRAVAÇÃO</b> obrigatoriamente durante o momento de discussão e deliberação das notas (fase sigilosa).</li>
+            </ul>
+        `
+    },
+    {
+        section: "Burocracia",
+        title: "Liberação de Avaliação (ProPGWeb)",
+        alert: "Faça isso logo após a deliberação",
+        content: `
+            <p>Com as notas decididas, é hora de oficializar no sistema.</p>
+            <ul>
+                <li>Acesse <span class="highlight">propgweb.ufscar.br</span>.</li>
+                <li>Vá em <b>Defesa > Manutenção de Bancas</b> e libere a avaliação para os membros.</li>
+            </ul>
+            <p>Em caso de dúvidas sobre como realizar essa liberação, assista ao vídeo abaixo:</p>
+            <a href="COLOQUE_O_LINK_AQUI" target="_blank" class="video-btn">
+                ▶ Assistir Tutorial: Liberação pelo Orientador
+            </a>
+        `
+    },
+    {
+        section: "Burocracia",
+        title: "Parecer da Banca Examinadora",
+        alert: "",
+        content: `
+            <p>Os membros remotos da banca receberão um e-mail do sistema para preencherem seus pareceres.</p>
+            <ul>
+                <li>Acompanhe no ProPGWeb até que todos os membros apareçam com status <b>Concluído</b>.</li>
+                <li>Se algum membro externo tiver dificuldades no preenchimento do sistema, envie a ele o link do tutorial abaixo:</li>
+            </ul>
+            <a href="COLOQUE_O_LINK_AQUI" target="_blank" class="video-btn">
+                ▶ Copiar link / Assistir Tutorial para Membros da Banca
+            </a>
+            <br><br>
+            <p>✨ <i>Após o preenchimento de todos, a defesa está formalmente concluída. Parabéns!</i></p>
+        `
+    }
+];
+
+// =======================================================
+// LÓGICA DE ESTADO (STATE MACHINE)
+// =======================================================
+
+let appState = 'welcome'; // 'welcome', 'profile', 'flow'
+let currentFlow = [];
+let currentStepIndex = 0;
+let userProfile = '';
 
 // Elementos do DOM
 const contentArea = document.getElementById('contentArea');
 const appHeader = document.getElementById('appHeader');
+const appFooter = document.getElementById('appFooter');
 const progressBar = document.getElementById('progressBar');
 const stepCounter = document.getElementById('stepCounter');
 const btnNext = document.getElementById('btnNext');
 const btnPrev = document.getElementById('btnPrev');
 const doneCheck = document.getElementById('doneCheck');
 const checkWrapper = document.getElementById('checkWrapper');
+const headerProfileType = document.getElementById('headerProfileType');
 
-function renderStep() {
-    // Efeito de transição
+function renderApp() {
     contentArea.classList.add('fade-out');
     
     setTimeout(() => {
-        const step = stepsData[currentStep];
-
-        if (step.isWelcome) {
-            // Renderiza layout da Biografia
-            appHeader.style.display = 'none';
-            checkWrapper.style.display = 'none';
-            btnPrev.style.display = 'none';
-            
-            btnNext.innerHTML = 'Iniciar Guia ➡';
-            btnNext.disabled = false;
-            progressBar.style.width = '0%';
-
-            contentArea.innerHTML = `
-                <div class="welcome-layout">
-                    <img src="${step.photo}" alt="Profª Drª Ana Lucia" class="welcome-photo">
-                    <div class="welcome-text">
-                        <h1>${step.title}</h1>
-                        <h3>${step.subtitle}</h3>
-                        ${step.bio}
-                    </div>
-                </div>
-            `;
-        } else {
-            // Renderiza layout de Passo a Passo
-            appHeader.style.display = 'flex';
-            checkWrapper.style.display = 'block';
-            btnPrev.style.display = 'block';
-            
-            // Calculo dos passos (ignora a tela inicial de boas vindas para a conta)
-            const actualStep = currentStep; 
-            const totalSteps = totalDataSteps - 1;
-            
-            stepCounter.innerText = `${actualStep} / ${totalSteps}`;
-            progressBar.style.width = `${(actualStep / totalSteps) * 100}%`;
-
-            // Verifica se tem alerta
-            let alertHTML = '';
-            if (step.alert) {
-                alertHTML = `
-                    <div class="alert-box active">
-                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                        <span>${step.alert}</span>
-                    </div>
-                `;
-            }
-
-            // Define texto do botão
-            if (currentStep === totalDataSteps - 1) {
-                btnNext.innerHTML = 'Finalizar ✔️';
-            } else {
-                btnNext.innerHTML = 'Próximo ➡';
-            }
-
-            // Reseta o checkbox
-            doneCheck.checked = false;
-            btnNext.disabled = true;
-
-            contentArea.innerHTML = `
-                <span class="section-badge">${step.section}</span>
-                <h2 class="step-title">${step.title}</h2>
-                ${alertHTML}
-                <div class="step-details">${step.content}</div>
-            `;
+        if (appState === 'welcome') {
+            renderWelcome();
+        } else if (appState === 'profile') {
+            renderProfileSelection();
+        } else if (appState === 'flow') {
+            renderFlowStep();
         }
-
         contentArea.classList.remove('fade-out');
-    }, 300); // Tempo da animação do CSS
+    }, 300);
 }
 
-function nextStep() {
-    if (currentStep < totalDataSteps - 1) {
-        currentStep++;
-        renderStep();
+function renderWelcome() {
+    appHeader.style.display = 'none';
+    checkWrapper.style.display = 'none';
+    btnPrev.style.display = 'none';
+    appFooter.style.display = 'flex';
+    appFooter.style.justifyContent = 'flex-end';
+    
+    btnNext.innerHTML = 'Iniciar Guia ➡';
+    btnNext.disabled = false;
+    progressBar.style.width = '0%';
+
+    contentArea.innerHTML = `
+        <div class="welcome-layout">
+            <img src="${welcomeData.photo}" alt="Profª Drª Ana Lucia" class="welcome-photo">
+            <div class="welcome-text">
+                <h1>${welcomeData.title}</h1>
+                <h3>${welcomeData.subtitle}</h3>
+                ${welcomeData.bio}
+            </div>
+        </div>
+    `;
+}
+
+function renderProfileSelection() {
+    appHeader.style.display = 'none';
+    appFooter.style.display = 'flex';
+    checkWrapper.style.display = 'none';
+    
+    // Configura botões do rodapé
+    btnPrev.style.display = 'flex';
+    btnNext.style.display = 'none';
+    appFooter.style.justifyContent = 'flex-start'; // Traz o botão 'Anterior' para a esquerda
+    progressBar.style.width = '10%';
+
+    contentArea.innerHTML = `
+        <div class="profile-selection-container">
+            <h2>Selecione o seu perfil:</h2>
+            <div class="profile-buttons">
+                <div class="btn-profile" onclick="selectProfile('advisor')">
+                    <span>🎓</span>
+                    <strong>Sou o Orientador(a)</strong>
+                    <p>Presidente da Banca</p>
+                </div>
+                <div class="btn-profile" onclick="selectProfile('student')">
+                    <span>📝</span>
+                    <strong>Sou o Discente</strong>
+                    <p>Aluno apresentando a defesa</p>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function renderFlowStep() {
+    appHeader.style.display = 'flex';
+    appFooter.style.display = 'flex';
+    checkWrapper.style.display = 'block';
+    btnPrev.style.display = 'flex';
+    btnNext.style.display = 'flex';
+    appFooter.style.justifyContent = 'space-between';
+    
+    const step = currentFlow[currentStepIndex];
+    const totalSteps = currentFlow.length;
+    
+    headerProfileType.innerText = userProfile === 'student' ? 'Guia do Discente' : 'Guia do Orientador';
+    stepCounter.innerText = `${currentStepIndex + 1} / ${totalSteps}`;
+    
+    // Calcula progresso considerando que a barra já começa um pouco preenchida após as telas iniciais
+    const progressPercent = ((currentStepIndex + 1) / totalSteps) * 100;
+    progressBar.style.width = `${progressPercent}%`;
+
+    // Verifica se tem alerta
+    let alertHTML = '';
+    if (step.alert) {
+        alertHTML = `
+            <div class="alert-box active">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                <span>${step.alert}</span>
+            </div>
+        `;
+    }
+
+    if (currentStepIndex === totalSteps - 1) {
+        btnNext.innerHTML = 'Finalizar ✔️';
     } else {
-        alert("Processo concluído! Você está pronto para a defesa híbrida.");
-        currentStep = 0; // Volta ao inicio após finalizar
-        renderStep();
+        btnNext.innerHTML = 'Próximo ➡';
+    }
+
+    doneCheck.checked = false;
+    btnNext.disabled = true;
+
+    contentArea.innerHTML = `
+        <span class="section-badge">${step.section}</span>
+        <h2 class="step-title">${step.title}</h2>
+        ${alertHTML}
+        <div class="step-details">${step.content}</div>
+    `;
+}
+
+// =======================================================
+// AÇÕES E CONTROLES
+// =======================================================
+
+function selectProfile(type) {
+    userProfile = type;
+    if (type === 'student') {
+        currentFlow = studentSteps;
+    } else {
+        currentFlow = advisorSteps;
+    }
+    currentStepIndex = 0;
+    appState = 'flow';
+    renderApp();
+}
+
+function nextAction() {
+    if (appState === 'welcome') {
+        appState = 'profile';
+        renderApp();
+    } else if (appState === 'flow') {
+        if (currentStepIndex < currentFlow.length - 1) {
+            currentStepIndex++;
+            renderApp();
+        } else {
+            alert("Tutorial concluído! Desejamos uma excelente defesa.");
+            // Opcional: Voltar para a tela inicial
+            appState = 'welcome';
+            renderApp();
+        }
     }
 }
 
-function prevStep() {
-    if (currentStep > 0) {
-        currentStep--;
-        renderStep();
+function prevAction() {
+    if (appState === 'profile') {
+        appState = 'welcome';
+        renderApp();
+    } else if (appState === 'flow') {
+        if (currentStepIndex > 0) {
+            currentStepIndex--;
+            renderApp();
+        } else {
+            // Se estiver no passo 0 do fluxo, volta para seleção de perfil
+            appState = 'profile';
+            renderApp();
+        }
     }
 }
 
@@ -673,7 +617,7 @@ function toggleNextButton() {
 }
 
 // Inicializa a aplicação
-renderStep();
+renderApp();
 
 </script>
 </body>
